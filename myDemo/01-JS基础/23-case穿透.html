@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1.获取用户输入的星期
+    var week = +prompt('请输入当前星期(1-7)');
+
+    switch (week) {
+      // 星期1-5工作
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+        alert('work');
+        break; // 在这里放一个 break
+
+      // 星期6-7放松
+      case 6:
+      case 7:
+        alert('relax');
+        break; // 在这里放一个 break
+
+      // 超出范围
+      default:
+        week = +prompt('输入错误，请输入正确范围1-7');
+        break;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 递归求和
+    function doo(n) {
+      // 1.先写递归停止的条件,否则就栈溢出造成死递归了
+      if (n === 1) {
+        return 1;
+      }
+
+      // 返回，10 +（1 - 9）的和
+      return n + doo(n - 1);
+    }
+    let res = doo(10);
+    console.log(res);
+
+  </script>
+</body>
+
+</html>

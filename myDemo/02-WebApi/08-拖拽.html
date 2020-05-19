@@ -1,0 +1,313 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-01 20:15:26
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-06 08:53:23
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul,
+  li {
+    list-style: none;
+  }
+
+  ul {
+    position: relative;
+    width: 640px;
+    height: 640px;
+    margin: 10px auto;
+    border: 10px solid pink;
+  }
+
+  li {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    color: seashell;
+    font-size: 50px;
+    margin: 10px;
+    text-align: center;
+    line-height: 200px;
+  }
+</style>
+
+<body>
+  <ul>
+    <li class="1">1</li>
+    <li class="2">2</li>
+    <li class="3">3</li>
+    <li class="4">4</li>
+    <li class="5">5</li>
+    <li class="6">6</li>
+    <li class="7">7</li>
+    <li class="8">8</li>
+    <li class="9">9</li>
+  </ul>
+
+
+  <script>
+    // 1.获取元素
+    let ul = document.querySelector('ul');
+    let lis = document.querySelectorAll('li');
+
+    //2.调用布局
+    nine(lis)
+
+    //3.遍历lis设置背景色
+    lis.forEach((item, index) => {
+      item.style.backgroundColor = getColor(item)
+    });
+
+    //4.取消选中
+    document.addEventListener('selectstart', function (e) {
+      e.preventDefault()
+    })
+
+    // 5.在全局储存一些变量
+    let ulW = ul.clientWidth,//ul的宽
+      ulH = ul.clientHeight,//ul的高
+      startX,//记录鼠标点击时候的初始x坐标
+      startY,//记录鼠标开始点的时候Y坐标
+      startLeft,//记录li最初距离ul的left值
+      startTop,//记录li最初距离ul的top值
+      moveX,//储存li水平移动的距离
+      moveY;//储存li垂直移动的距离
+    moveFlag = false//是否正在移动
+    // 7.鼠标移动事件
+    function move(e) {
+      // 7.1 盒子的移动距离 = 鼠标移动时距可视区域的X距离-鼠标点击时候距可视区域的x距离+li距离ul本身的x距离
+      moveX = e.clientX - startX + startLeft
+      moveY = e.clientY - startY + startTop
+      console.log(moveX, moveY);
+      console.log(e.clientX, startX, startLeft);
+
+
+      // 7.4 设置盒子移动的边界
+      // 左边界
+      if (moveX <= 0) {
+        moveX = -10
+      }
+
+      // 上边界
+      if (moveY <= 0) {
+        moveY = -10
+      }
+      //右边界：当movex 大于 ul的宽度 - 这个li自身的宽度时候 - margin
+      if (moveX >= ulW - this.offsetWidth - 10) {
+        //ul的宽度 - 这个li自身的宽度时候，给他最大宽- margin
+        moveX = ulW - this.offsetWidth - 10
+      }
+      // 下边借
+      if (moveY >= ulH - this.offsetHeight - 10) {
+        //ul的高度 - 这个li自身的高度时候，给他最大高- margin
+        moveY = ulH - this.offsetHeight - 10
+      }
+
+      //设置好边界再赋值不然会有bug...
+      // 7.3 移动的盒子提高层级
+      this.style.zIndex = 10
+
+      //7.2 鼠标的移动位置赋值给left和top
+      this.style.left = moveX + 'px'
+      this.style.top = moveY + 'px'
+    }
+
+    //8.鼠标弹起事件
+    function up() {
+      // 8.1 鼠标弹起后，所有事件都失效
+      this.removeEventListener('mouseup', up)
+      this.removeEventListener('mouseout', out)
+      this.removeEventListener('mousemove', move)
+
+      //8.2 让所有的li的index恢复1
+      this.style.zIndex = 1
+
+      //8.3 回到初始位置
+      back(this)
+
+      // 8.4遍历每个li
+
+      // lis.forEach(function (item) {
+      //   console.log(this);//此时的this指向的是window~~~！！！
+      // })
+      // 8.5 准备一个数组，储存和我接触的元素
+      let kiss = []
+
+      //利用箭头函数，将绑定弹起事件的this继承过来！
+      lis.forEach(item => {
+        // console.log(this);
+
+        // 8.6 判断谁和我接触了
+        if (item !== this) {//8.8 不跟他自己比
+          if (
+            // 8.7 如果这个元素到ul左边的距离减去我自己到左边的距离的绝对值小于等于我的宽度
+            Math.abs(item.offsetLeft - this.offsetLeft) <= this.offsetWidth &&
+            // 如果这个元素到ul顶部的距离减去我自己到顶部的距离的绝对值小于等于我的高度
+            Math.abs(item.offsetTop - this.offsetTop) <= this.offsetHeight
+          ) {
+            // 8.9 把与我有接触的元素存进数组职工
+            kiss.push(item)
+          }
+        }
+      });
+      console.log(kiss);
+
+      // 8.10 求街粗面积
+      let area = 0 //储存最大面积
+      let max = 0 // 储存最大面积的索引
+
+      kiss.forEach(item => {
+        // 接触面积的宽 = 我自己的宽 - 这个项目到ul左边的距离-我到左边的距离的绝对值
+        let w = this.offsetWidth - Math.abs(item.offsetLeft - this.offsetLeft)
+        // 接触面积的高 = 我自己的高 - 这个项目到ul顶部的距离-我到顶部的距离的绝对值
+        let h = this.offsetHeight - Math.abs(item.offsetTop - this.offsetTop)
+
+        //8.11 如果这个元素的w*h大于了最大的面积
+        if (w * h > area) {
+          //就把他的w*h赋值给最大面积
+          area = w * h
+          //把最大面积的索引给max
+          max = item
+        }
+      });
+      // console.log(max);//max就是街粗面积最大的li
+
+      // 8.12 判断是否有街粗面积最大的元素
+      if (max) {
+        // 如果有，就交换这个元素和最大元素的left和top
+
+        change(this, max)
+
+      } else {
+        // 没有交换就回到原位
+        back(this)
+      }
+    }
+
+    // 9.鼠标离开
+    function out() {
+      // 9.1 鼠标离开盒子，所有事件都失效
+      this.removeEventListener('mouseup', up)
+      this.removeEventListener('mouseout', out)
+      this.removeEventListener('mousemove', move)
+
+      // 9.2 让多有的li都恢复初始值
+      this.style.zIndex = 1
+
+      //9.3 回到原位
+      back(this)
+    }
+
+
+    lis.forEach(function (item) {
+      // 6.绑定鼠标按下事件
+      item.addEventListener('mousedown', function (e) {
+        // cp 如果正在移动中，则不用再初始化位置
+        if (moveFlag) return
+        startX = e.clientX - 10//鼠标按下时距离可视区的X位置
+        startY = e.clientY - 10//鼠标按下时距离可视区的Y位置
+
+        startLeft = this.offsetLeft - 10  //鼠标按下时，鼠标所在的li离他上一个有定位的父盒子的水平距离-magin
+        startTop = this.offsetTop - 10 //鼠标按下时，鼠标所在的li离他上一个有定位的父盒子的垂直距离-magin
+        this.style.transition = 'none'
+
+        // console.log(startX, startLeft);
+        //7.绑定鼠标移动事件
+        this.addEventListener('mousemove', move)
+
+        //8.绑定鼠标弹起事件
+        this.addEventListener('mouseup', up)
+
+        //9.绑定鼠标离开事件
+        this.addEventListener('mouseout', out)
+        // 10. 绑定transtion结束事件 cp
+        this.addEventListener("transitionend", function () {
+          moveFlag = false
+        }, false)
+      })
+    })
+
+    // -------------------------------封装函数--------------------------------------------
+    /**
+     * @name: 获取随机颜色
+     * @test: test font
+     * @msg: 
+     * @param {元素} 
+     * @return: 随机颜色
+     */
+    function getColor(dom) {
+      let r = Math.floor(Math.random() * 256)
+      let g = Math.floor(Math.random() * 256)
+      let b = Math.floor(Math.random() * 256)
+      return `rgb(${r},${g},${b})`
+    }
+
+    /**
+     * @name: 生成3*3的布局
+     * @test: test font
+     * @msg: 
+     * @param {一个伪数组} 
+     * @return: 无
+     */
+    function nine(lis) {
+      let liW = 200,//li的宽度
+        liH = 200,//li的高度
+        liM = 10;//li的margin
+
+      lis.forEach((item, index) => {
+        let row = Math.floor(index / 3);//得到盒子所在的行
+        let col = Math.floor(index % 3);//的到盒子所在的列
+        item.style.left = col * (liW + liM) + 'px'
+        item.style.top = row * (liH + liM) + 'px'
+      });
+    }
+
+    /**
+     * @name: 回到初始位置
+     * @test: test font
+     * @msg: 
+     * @param {dom} 
+     * @return: 无
+     */
+    function back(dom) {
+      moveFlag = true
+      dom.style.transition = 'all .8s'
+      dom.style.left = startLeft + 'px'
+      dom.style.top = startTop + 'px'
+    }
+    /**
+    * @name: 交换两个元素的位置
+    * @test: test font
+    * @msg: 
+    * @param {news,old} 要交换的额两个元素 
+    * @return: 无
+    */
+    function change(news, old) {
+      // cp 正在移动
+      moveFlag = true
+      news.style.left = old.offsetLeft - 10 + 'px'//要减去自身的margin
+      news.style.top = old.offsetTop - 10 + 'px'
+
+      old.style.left = startLeft + 'px'
+      old.style.top = startTop + 'px'
+    }
+
+  </script>
+</body>
+
+</html>

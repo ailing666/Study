@@ -1,0 +1,138 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-03 19:10:01
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-03 22:10:27
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    position: relative;
+    margin: 100px;
+    width: 350px;
+    height: 350px;
+    border: 1px solid #000;
+  }
+
+  .smallBox {
+    position: relative;
+  }
+
+  .mask {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    cursor: move;
+    background-color: orange;
+    opacity: .5;
+  }
+
+  .bigBox {
+    display: none;
+    position: absolute;
+    left: 400px;
+    top: 0;
+    width: 400px;
+    height: 400px;
+    border: 1px solid #000;
+    overflow: hidden;
+  }
+
+  .bigBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+</style>
+
+<body>
+
+  <div class="container">
+    <div class="smallBox">
+      <img src="./img/small.jpg" alt="">
+      <div class="mask"></div>
+    </div>
+    <div class="bigBox">
+      <img src="./img/big.jpg" alt="" id="bigImg">
+    </div>
+  </div>
+
+  <script>
+    // 1.获取元素
+    let container = document.querySelector('.container');
+    let smallBox = document.querySelector('.smallBox');
+    let mask = document.querySelector('.mask');
+    let bigBox = document.querySelector('.bigBox');
+    let bigImg = document.querySelector('#bigImg');
+
+    // 2.设置鼠标移入显示小盒子和大盒子
+    smallBox.addEventListener('mouseenter', function () {
+      mask.style.display = 'block'
+      bigBox.style.display = 'block'
+    })
+
+    // 3.设置鼠标移出，大盒子小盒子隐藏
+    smallBox.addEventListener('mouseleave', function () {
+      mask.style.display = 'none'
+      bigBox.style.display = 'none'
+    })
+
+    // 4.设置鼠标移动事件
+    smallBox.addEventListener('mousemove', function (e) {
+      //5. 鼠标在小盒子中的坐标
+      let smallX = e.pageX - container.offsetLeft;
+      let smallY = e.pageY - container.offsetTop;
+
+      // 6.mask水平移动的距离就是鼠标在盒子中的坐标-小河子的宽
+      ///2是为了让鼠标在小盒子的正中央
+      let maskX = smallX - mask.offsetWidth / 2;
+      let maskY = smallY - mask.offsetHeight / 2;
+
+      // 7.设置mask移动的左上（当鼠标的坐标减mask宽度的一半是负数，说明他超出了左边界和上边界）
+      maskX = maskX < 0 ? 0 : maskX
+      maskY = maskY < 0 ? 0 : maskY
+
+      //8.设置mask移动的右下
+      //mask移动的范围就是amallBox的宽度减取mask的宽度
+      let maxX = smallBox.offsetWidth - mask.offsetWidth
+      let maxY = smallBox.offsetHeight - mask.offsetHeight
+      //如果鼠标移动的距离比最大宽度还要大，就让他的移动距离等于最大宽度，否则还是自己的移动距离
+      maskX = maskX > maxX ? maxX : maskX
+      maskY = maskY > maxY ? maxY : maskY
+
+      // 9.将移动的距离赋值给mask的left和top
+      mask.style.left = maskX + 'px'
+      mask.style.top = maskY + 'px'
+
+      // 10.大图移动
+      //小图和大图是按比例移动的
+      // 大图的移动 = 大图的宽 / 小图的宽 * maskX
+      let bigImgX = bigImg.offsetWidth / smallBox.offsetWidth * maskX
+      let bigImgY = bigImg.offsetHeight / smallBox.offsetHeight * maskY
+
+      // 11.mask向右移动，大图向左移动
+      bigImg.style.left = -bigImgX + 'px'
+      bigImg.style.top = -bigImgY + 'px'
+    }) 
+  </script>
+</body>
+
+</html>

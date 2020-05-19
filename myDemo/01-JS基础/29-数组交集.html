@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 给定两个数组，编写一个函数来计算它们的交集。
+
+    // 分析：
+    // 遍历一个数组
+    // 判断第二个数组是否有第一个数组的元素
+    var arr1 = [9, 4, 9, 8, 4];
+    var arr2 = [4, 9, 5];
+
+    var arr3 = [];
+    var arr4 = [];
+
+    for (var i = 0; i < arr1.length; i++) {
+      for (var j = 0; j < arr2.length; j++) {
+        if (arr2[j] === arr1[i]) {
+          arr3.push(arr1[i]);
+        }
+      }
+    }
+    for (var i = 0; i < arr3.length; i++) {
+      if (arr4.indexOf(arr3[i]) === -1) {
+        arr4.push(arr3[i]);
+      }
+    }
+    console.log(arr4);
+
+  </script>
+</body>
+
+</html>

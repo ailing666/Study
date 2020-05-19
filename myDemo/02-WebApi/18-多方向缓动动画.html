@@ -1,0 +1,112 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-02 21:31:49
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-02 21:59:54
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    color: #fff;
+    font-size: 20px;
+    background-color: #956;
+  }
+
+  span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+
+<body>
+  <button>水平400</button>
+  <button>垂直400</button>
+  <button>水平800</button>
+  <button>垂直800</button>
+  <button>变宽</button>
+  <button>变高</button>
+  <button>回到起点</button>
+  <div class="box"><span>小艾同学</span></div>
+  <script>
+    //1.获取元素
+    let btn = document.querySelectorAll('button');
+    let box = document.querySelector('.box');
+
+    //2.给水平400注册点击事件
+    btn[0].addEventListener('click', function () {
+      slowAnimation(box, 400, 'left')
+    })
+
+    //12.给垂直400注册点击事件
+    btn[1].addEventListener('click', function () {
+      slowAnimation(box, 400, 'top')
+    })
+    //13.给水平800注册点击事件
+    btn[2].addEventListener('click', function () {
+      slowAnimation(box, 800, 'left')
+    })
+    //14.给垂直800注册点击事件
+    btn[3].addEventListener('click', function () {
+      slowAnimation(box, 800, 'top')
+    })
+    //15.给变宽注册点击事件
+    btn[4].addEventListener('click', function () {
+      slowAnimation(box, 400, 'width')
+    })
+    //16.给变高注册点击事件
+    btn[5].addEventListener('click', function () {
+      slowAnimation(box, 400, 'height')
+    })
+    // 17.回到起点点击事件
+    btn[6].addEventListener('click', function () {
+      slowAnimation(box, 0, 'left')
+    })
+
+
+    //3.封装函数
+    function slowAnimation(obj, target, attr) {
+      //4.不管三七二十一，先清除定时器
+      clearInterval(obj.time)
+
+      //5.利用getComputedStyle获取传入的属性,取整去除单位
+      let position = parseInt(window.getComputedStyle(obj)[attr])
+
+      //6.启动定时器
+      obj.time = setInterval(function () {
+        //7. 步长公式走起(当前 - 初始) / 10
+        let step = (target - position) / 10
+
+        //8.取整
+        step = step > 0 ? Math.ceil(step) : Math.floor(step)
+
+        // 9.修改元素的属性
+        position += step
+
+        //10.将新的属性添加给attr
+        obj.style[attr] = position + 'px'
+
+        // 11.清除定时器
+        if (target === position) {
+          clearInterval(obj.time)
+        }
+      }, 30)
+    }
+  </script>
+</body>
+
+</html>

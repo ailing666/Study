@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var row = +prompt('你要几行的？');
+        for (var i = 1; i <= row; i++) {
+            // 用短横线挤*
+            // 短横线个数=总行数-当前行数
+            for (var r = row - i; r >= 0; r--) {
+                document.write('_');
+            }
+            for (var j = 1; j <= 2 * i - 1; j++) {
+                document.write('*');
+            }
+            for (var r = row - i; r >= 0; r--) {
+                document.write('_');
+            }
+            document.write('</br>');
+        }
+    </script>
+</body>
+
+</html>

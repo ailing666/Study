@@ -1,0 +1,184 @@
+/* 参数说明
+ * @border-width 指定边框厚度(单位为px)
+ * @border-color 指定边框颜色
+ * @border-style 指定边框样式
+ * @radius 指定边框圆角半径  默认为null
+ */
+/*单行溢出*/
+/*多行溢出*/
+@import '../css/normalize.css';
+header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 1.28rem /* 48/37.5 */;
+  align-items: center;
+  background-color: #fff;
+}
+header .login {
+  width: 1.173333rem /* 44/37.5 */;
+  height: 48px;
+  font-size: 0.373333rem /* 14/37.5 */;
+  color: #53575f;
+  text-align: center;
+  line-height: 48px;
+}
+header .input_bar {
+  flex: 1;
+  height: 0.746667rem /* 28/37.5 */;
+  line-height: 0.746667rem /* 28/37.5 */;
+  text-indent: 15px;
+  border-radius: 0.373333rem /* 14/37.5 */;
+  font-size: 0.426667rem /* 16/37.5 */;
+  background-color: #f3f4f5;
+  color: #53575f;
+}
+header .categories {
+  width: 1.093333rem /* 41/37.5 */;
+  height: 48px;
+  background: url(../images/categories.png) no-repeat right 8px center;
+  background-size: 0.533333rem /* 20/37.5 */ 0.48rem /* 18/37.5 */;
+}
+.center {
+  position: fixed;
+  top: 1.28rem /* 48/37.5 */;
+  bottom: 46px;
+  width: 100%;
+  overflow: auto;
+}
+.center .my_nav {
+  display: flex;
+  height: 1.013333rem /* 38/37.5 */;
+}
+.center .my_nav .roll {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  overflow-x: auto;
+}
+.center .my_nav .roll .item {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0 0.213333rem /* 8/37.5 */;
+  padding-bottom: 10px;
+  font-size: 0.426667rem /* 16/37.5 */;
+  color: #53575f;
+}
+.center .my_nav .roll .item:nth-child(1) {
+  color: #d34ba8;
+  border-bottom: 1px solid #d34ba8;
+}
+.center .my_nav .more {
+  width: 0.48rem /* 18/37.5 */;
+  background: url(../images/arrow_03.png) no-repeat center;
+  background-size: 0.48rem /* 18/37.5 */ 0.266667rem /* 10/37.5 */;
+}
+.center .sub_nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+.center .sub_nav .inner {
+  width: 20%;
+}
+.center .brand,
+.center .crazy {
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 5px;
+}
+.center .brand .tit,
+.center .crazy .tit {
+  padding-top: 15px;
+}
+.center .brand .tit img,
+.center .crazy .tit img {
+  width: 50%;
+  margin: 0 auto;
+}
+.center .brand .content,
+.center .crazy .content {
+  display: flex;
+}
+.center .brand .content .info,
+.center .crazy .content .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33.33%;
+  margin-right: 5px;
+}
+.center .brand .content .info:last-child,
+.center .crazy .content .info:last-child {
+  margin-right: 0;
+}
+.center .brand .content .info .price,
+.center .crazy .content .info .price {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  height: 0.96rem /* 36/37.5 */;
+  font-size: 0.373333rem /* 14/37.5 */;
+}
+.center .brand .content .info .price::before,
+.center .crazy .content .info .price::before {
+  content: '疯抢价';
+  height: 0.48rem /* 18/37.5 */;
+  line-height: 0.48rem /* 18/37.5 */;
+  color: #fff;
+  font-size: 0.266667rem /* 10/37.5 */;
+  border-radius: 0.266667rem /* 10/37.5 */;
+  font-weight: 400;
+  margin-right: 0.133333rem /* 5/37.5 */;
+  background: linear-gradient(90deg, #dd409a, #cc77da);
+}
+.center .today {
+  padding: 10px;
+  padding-top: 0;
+}
+.center .today .tit {
+  text-align: center;
+  font-size: 0.48rem /* 18/37.5 */;
+}
+.center .today .today_bd .list {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 6.24rem /* 234/37.5 */;
+  margin-bottom: 0.266667rem /* 10/37.5 */;
+  padding-bottom: 5px;
+  background-color: #fff;
+}
+.center .today .today_bd .list .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 0.426667rem /* 16/37.5 */;
+}
+.center .today .today_bd .list .title .tit {
+  margin: 15px 0;
+}
+.center .today .today_bd .list .title .day {
+  color: #53575f;
+}
+.center .today .today_bd .list .down {
+  padding: 0 8px;
+  margin: 0 ;
+  color: #53575f;
+  font-size: 0.373333rem /* 14/37.5 */;
+}
+.center .today .today_bd .list .down .discount {
+  color: #d34ba8;
+}
+.center .today .today_bd .list .down i {
+  font-style: normal;
+  margin: 0 3px 0 10px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.226667rem /* 46/37.5 */;
+}

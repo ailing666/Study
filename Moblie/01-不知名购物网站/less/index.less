@@ -1,0 +1,197 @@
+@import './mixin';
+@import '../css/normalize.css';
+
+
+@color_txt:#53575f;
+@color_txt2:#d34ba8;
+
+header{
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 1.28rem /* 48/37.5 */;
+    align-items: center;
+    background-color: #fff;
+
+    .login{
+        width: 1.173333rem /* 44/37.5 */;
+        height: 48px;
+        font-size: .373333rem /* 14/37.5 */;
+        color: @color_txt;
+        text-align: center;
+        line-height: 48px;
+    }
+
+    .input_bar{
+        flex: 1;
+        height: .746667rem /* 28/37.5 */;
+        line-height: .746667rem /* 28/37.5 */;
+        text-indent: 15px;
+        border-radius: .373333rem /* 14/37.5 */;
+        font-size: .426667rem /* 16/37.5 */;
+        background-color: #f3f4f5;
+        color: @color_txt;
+    }
+
+    .categories{
+        width: 1.093333rem /* 41/37.5 */;
+        height: 48px;
+        background: url(../images/categories.png) no-repeat right 8px center;
+        background-size: .533333rem /* 20/37.5 */ .48rem /* 18/37.5 */;
+    }
+}
+
+.center{
+    position: fixed;
+    top: 1.28rem /* 48/37.5 */;
+    bottom: 46px;
+    width: 100%;
+    overflow: auto;
+
+    // 导航滚动
+    .my_nav{
+        display: flex;
+        height: 1.013333rem /* 38/37.5 */;
+
+       .roll{
+            flex: 1;
+            align-items: center;
+            display: flex;
+            overflow-x: auto;
+            .item{
+                flex-shrink: 0;
+                box-sizing: border-box;
+                margin: 0 .213333rem /* 8/37.5 */;
+                padding-bottom: 10px;
+                font-size: .426667rem /* 16/37.5 */;
+                color: @color_txt;
+                &:nth-child(1){
+                    color: @color_txt2;
+                    border-bottom: 1px solid @color_txt2;
+                }
+            }
+        }
+
+        .more{
+            width: .48rem /* 18/37.5 */;
+            background: url(../images/arrow_03.png) no-repeat center;
+            background-size: .48rem /* 18/37.5 */ .266667rem /* 10/37.5 */;
+        }
+    }
+
+    .sub_nav{
+        display: flex;
+        flex-wrap: wrap;
+        .inner{
+            width: 20%;
+        }
+    }
+
+    .brand,.crazy{
+        background-color: #fff;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 5px;
+        .tit{
+            padding-top: 15px;
+            img{
+                width: 50%;
+                margin:  0 auto;
+            }
+        }
+
+       .content{
+           display: flex;
+
+            .info{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 33.33%;
+                margin-right: 5px;
+
+                &:last-child{
+                    margin-right: 0;
+                }
+
+                .price{
+                    display: flex;
+                    align-items: center;
+                    font-weight: 700;
+                    height: .96rem /* 36/37.5 */;
+                    font-size: .373333rem /* 14/37.5 */;
+
+                    &::before{
+                       content: '疯抢价';
+                       height: .48rem /* 18/37.5 */;
+                       line-height: .48rem /* 18/37.5 */;
+                       color: #fff;
+                       font-size: .266667rem /* 10/37.5 */;
+                       border-radius: .266667rem /* 10/37.5 */;
+                       font-weight: 400;
+                       margin-right: .133333rem /* 5/37.5 */;
+                       background: linear-gradient(90deg,#dd409a,#cc77da);
+                    }
+                }
+            }
+       }
+    }
+
+    .today{
+        padding: 10px;
+        padding-top: 0;
+        .tit{
+            text-align: center;
+            font-size: .48rem /* 18/37.5 */;
+        }
+        .today_bd{
+            .list{
+                border-radius: 10px;
+                overflow: hidden;
+                height: 6.24rem /* 234/37.5 */;
+                margin-bottom: .266667rem /* 10/37.5 */;
+                padding-bottom: 5px;
+                background-color: #fff;
+                .title{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 8px;
+                    font-size: .426667rem /* 16/37.5 */;
+                    .tit{
+                        margin: 15px 0;
+                    }
+                    .day{
+                        color: @color_txt;
+                    }
+                }
+
+                .down{
+                    padding:0 8px;
+                    margin: 0 ;
+                    color: @color_txt;
+                    font-size: .373333rem /* 14/37.5 */;
+
+                    .discount{
+                        color: @color_txt2;
+                    }
+
+                    i{
+                        font-style: normal;
+                        margin: 0 3px 0 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.226667rem /* 46/37.5 */;
+    
+}

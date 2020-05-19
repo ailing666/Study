@@ -1,0 +1,95 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-02 13:37:15
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-02 14:21:02
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .father {
+    position: relative;
+    left: 100px;
+    width: 500px;
+    height: 500px;
+    padding: 10px;
+    border: 20px solid #000;
+    background-color: #f24;
+  }
+
+  .son {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 10px;
+    height: 200px;
+    background-color: #09f;
+    border: 20px solid #956;
+  }
+</style>
+
+<body>
+
+  <div class="father">
+    <div class="son" style="width :200px">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa, magnam labore ipsam maxime officia natus
+      blanditiis sint. Dignissimos dolore distinctio id, repellat numquam, debitis quia corporis laboriosam nemo, hic
+      error.numquam, debitis quia corporis laboriosam nemo, hic
+      error.</div>
+  </div>
+
+  <script>
+    // 1.获取元素
+
+    let father = document.querySelector('.father');
+    let son = document.querySelector('.son');
+
+    // 获得距离离自己最近的带有定位的盒子的左边距(父元素的pading+自身的margin+与父元素的距离)
+    // 返回值是不带单位的number类型
+    console.log(son.offsetLeft);//250+10+10
+    console.log(father.offsetLeft);//100
+
+    // 获得距离自己最近的带有定位的盒子的上边距(父元素的pading+自身的margin+与父元素的距离)
+    console.log(son.offsetTop);//250+10+10
+    console.log(father.offsetTop);//0
+
+    // 获得盒子的宽(padding+border+width)
+    console.log(father.offsetWidth);//540+10*2
+    console.log(son.offsetWidth);//240
+    // 用style只能获得行内样式属性
+    console.log(father.style.width);//空
+
+    //style获得的是一个带单位的字符串~
+    console.log(son.style.width);//200px
+
+
+    // 获得盒子的高(padding+border+width)
+    console.log(father.offsetHeight);//540+10*2
+    // 不包含超出盒子部分~
+    console.log(son.offsetHeight);//240
+
+    // 返回改元素的最近一个带有定位的父元素，如果没有就是body
+    console.log(son.offsetParent);
+    console.log(father.offsetParent);
+    // 修改元素属性篇
+    son.style.width = 100 + 'px'//可以修改
+    father.offsetWidth = 100 //无法修改，只能获取
+  </script>
+</body>
+
+</html>

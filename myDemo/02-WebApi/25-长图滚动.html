@@ -1,0 +1,114 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-03 22:17:11
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-03 22:33:14
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    body {
+      background-color: pink;
+    }
+
+    #box {
+      width: 750px;
+      height: 400px;
+      border: 1px solid red;
+      margin: 100px auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #pic {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #to_top,
+    #to_bottom {
+      width: 100%;
+      height: 50%;
+      position: absolute;
+      left: 0;
+      cursor: pointer;
+    }
+
+    #to_top {
+      top: 0;
+    }
+
+    #to_bottom {
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <img id="pic" src="./img/timg.jpg" alt="">
+    <span id="to_top"></span>
+    <span id="to_bottom"></span>
+  </div>
+
+  <script>
+    // 1.获取元素
+    let pic = document.querySelector('#pic');
+    let to_top = document.querySelector('#to_top');
+    let to_bottom = document.querySelector('#to_bottom');
+
+    // 5.定义变量储存
+    let timer = null,
+      step = 0;
+    // 2.给top设置鼠标移入
+    to_top.addEventListener('mouseover', function () {
+      // 3.清除定时器
+      clearInterval(timer)
+
+      // 4.设置定时器
+      timer = setInterval(function () {
+        // 5.每次图片移动的距离
+        step -= 1
+
+        // 6.判断临界值，超过图片的最大高度就清空定时器，由于是负值，就小于等于
+        step >= -2466 ? pic.style.top = step + 'px' : clearInterval(timer)
+      })
+    })
+
+    // 7.给bottom设置鼠标移入
+    to_bottom.addEventListener('mouseenter', function () {
+      // 8.清空定时器
+      clearInterval(timer)
+
+      // 9.设置定时器
+      timer = setInterval(function () {
+        // 10.每次图片移动的距离
+        step += 1
+        // 11.判断临界值，step每次+1，加到初始位置0，top就等于0，超过0就清空定时器
+        step <= 0 ? pic.style.top = step + 'px' : clearInterval(timer)
+      })
+    })
+
+    //11.鼠标离开大盒子清除定时器
+    pic.parentElement.addEventListener('mouseleave', function () {
+      clearInterval(timer)
+    })
+  </script>
+</body>
+
+</html>

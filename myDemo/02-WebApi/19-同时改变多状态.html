@@ -1,0 +1,95 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-02 22:15:34
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-02 23:01:54
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #9955ff;
+  }
+</style>
+
+<body>
+  <button>点击起飞</button>
+  <div class="box">小艾同学</div>
+
+  <script>
+    // 1.获取元素
+    let btn = document.querySelector('button');
+    let box = document.querySelector('.box');
+
+    // 2.将需要同时变化的属性保存到一个对象中
+    let changeObj = {
+      width: 400,
+      height: 400,
+      left: 400,
+      top: 400
+    };
+
+    // 15.给btn设置点击事件
+    btn.addEventListener('click', function () {
+      slowAnimation(box, changeObj)
+    })
+
+    // 3.封装一个缓动动画函数
+    function slowAnimation(obj, attrObj) {
+      //4. 不管三七二十一，先清理定时器
+      clearInterval(obj.time)
+
+      //5.设置定时器
+      obj.time = setInterval(function () {
+
+        // 12. 在循环外，假设所有的条件都满足
+        let flag = true
+
+        //6.遍历传入的对象
+        for (let k in attrObj) {
+          //7.获取元素的初始属性
+          //[k]就是属性
+          let position = parseInt(window.getComputedStyle(obj)[k])
+
+          //8.步长 （目标-初始 ）/ 10
+          let step = (attrObj[k] - position) / 10
+
+          //9.取整
+          step = step > 0 ? Math.ceil(step) : Math.floor(step)
+
+          // 10.计算变化的值
+          position += step
+
+          // 11.将这个值赋值给元素
+          obj.style[k] = position + 'px'
+
+          // 13.循环找打脸的，只要有一个不满足，就改为flase
+          if (position !== attrObj[k]) {
+            flag = false
+          }
+        }
+        // 14.在循环外，判断是否还是true，是的话说明都到了目标值，清除定时器
+        if (flag) {
+          clearInterval(obj.time)
+        }
+      }, 30)
+    }
+  </script>
+</body>
+
+</html>

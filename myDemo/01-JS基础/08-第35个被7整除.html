@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 需求：求从1开始第35个能被7和3整除的整数
+
+        // 1.定义一个变量储存那个数
+        var sum = 0,
+            // 2.定义一个变量计算是第几个
+            num = 0;
+        // 3.循环
+        for (var i = 1; i > 0; i++) {
+            // 4.能被7整除并且能被3整除
+            if (i % 7 === 0 && i % 3 === 0) {
+                // 5.产生一个数就自增1
+                num++;
+                // 6.产生一个数就与sum相加
+                sum += i;
+            }
+            // 7.输出第35个
+            if (num === 35) {
+                console.log(sum);
+                console.log(num);
+                break;
+            }
+        }
+    </script>
+</body>
+
+</html>

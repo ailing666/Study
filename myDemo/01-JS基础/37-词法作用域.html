@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // js的作用域是词法作用域/静态作用域,而不是动态作用域！！！！
+    // 函数作用域的形成是在函数声明的时候就决定好了的，而不是在执行的时候
+    var i = 0
+    function a() {
+      function b() {
+        var i = 1
+
+        console.log(i)
+      }
+      b()
+
+    }
+
+    a() // 0
+
+  </script>
+</body>
+
+</html>

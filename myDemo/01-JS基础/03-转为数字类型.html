@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // parseInt转为整数数字类型
+        console.log(parseInt('18'));
+        // 在转换时候遇到非数字自动停止，非数字前有数字，就输出整数，没有数字就输出NaN
+        // 没有四舍五入，只取整数位
+        console.log(parseInt('18.8px'));
+        console.log(parseInt('abc18px'));//NaN
+        // 不能转换boolean类型
+        console.log(parseInt(false));//NaN
+
+        // parseFloat转为小数数字类型，没有四舍五入
+        console.log(parseFloat('18.8'));
+        // 在转换时候遇到非数字自动停止，非数字前有数字，就输出数字，没有数字就输出NaN
+        console.log(parseFloat('18px'));
+        console.log(parseFloat('abc18.8px'));//NaN
+        // 不能转换boolean类型
+        console.log(parseInt(false));//NaN
+
+        // Number转换
+        var str = '666';
+        console.log(Number(str));
+        // 转换时候会识别是否转化，不能转换输出NaN
+        console.log(Number('B'));//NaN
+        console.log(Number(false));//0
+
+        //隐式转换
+        console.log('18' - 0);//隐式转换
+        console.log('18.8' * 1);//隐式转换
+        console.log('18.8' / '1');//可以是字符串-字符串
+        console.log(+'18.8');//加号写在前面
+    </script>
+</body>
+
+</html>

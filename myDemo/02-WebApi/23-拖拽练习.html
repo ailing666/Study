@@ -1,0 +1,76 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-03 21:08:24
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-03 21:32:04
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background-color: #950;
+  }
+</style>
+
+<body>
+  <div class="box"></div>
+  <script>
+    // 1.获取元素
+    let box = document.querySelector('.box');
+
+    // 3.声明两个变量储存鼠标在盒子中的坐标
+    let mouseX, mouseY
+
+    // 2.设置鼠标按住事件
+    box.addEventListener('mousedown', function (e) {
+      // 4.获得鼠标在盒子中的坐标
+      mouseX = e.pageX - this.offsetLeft
+      mouseY = e.pageY - this.offsetTop
+
+      // 5.设置鼠标移动事件
+      window.addEventListener('mousemove', move)
+
+    })
+    // 6.给函数命名方便清除
+    function move(e) {
+      // 9.获取box的移动距离(鼠标在页面中的-鼠标在盒子中的坐标)
+      let boxX = e.pageX - mouseX
+      let boxY = e.pageY - mouseY
+
+      //10.设置上左临界点
+      boxX = boxX > 0 ? boxX : 0
+      boxY = boxY > 0 ? boxY : 0
+
+      //10.设置右下临界点
+      let maxX = window.innerWidth - box.offsetWidth
+      let maxY = window.innerHeight - box.offsetHeight
+      boxX = boxX > maxX ? maxX : boxX
+      boxY = boxY > maxY ? maxY : boxY
+
+      // 11.赋值
+      box.style.left = boxX + 'px'
+      box.style.top = boxY + 'px'
+    }
+    // 7.设置鼠标弹起事件
+    window.addEventListener('mouseup', function () {
+      // 8.鼠标弹起移除事件
+      window.removeEventListener('mousemove', move)
+    })
+  </script>
+</body>
+
+</html>

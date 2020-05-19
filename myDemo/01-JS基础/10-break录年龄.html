@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //需求：输入5个人的年龄，计算年龄之和和平均年龄，如果年龄为负数或大于100，则提示错误重新输入
+        // 1.定义sum接收年龄
+        var sum = 0;
+        // 2.循环5次
+        for (var i = 1; i <= 5; i++) {
+            // 3.定义age接收用户输入的年龄
+            var age = +prompt('请输入第' + i + '个人的年龄');
+
+            // 4.建立一个死循环
+            while (true) {
+                // 5.如果用户输入不为空
+                if (age !== '') {
+                    // 6.sum加上每一个age
+                    sum += age;
+                    // 7.当年龄有误
+                    while (age < 0 || age > 100) {
+                        // 8.减去输错的年龄
+                        sum -= age;
+                        // 9.重新赋值年龄
+                        age = +prompt('第' + i + '个人年龄有误请重新输入年龄');
+                        // 10.重新计算年龄
+                        sum += age;
+                    }
+                    // 最终退出循环
+                    break;
+                } else {
+                    // 11.如果用户输入为空就让他重新输入
+                    var age = +prompt('输入错误：请重新输入第' + i + '个人的年龄');
+                }
+            }
+        }
+        alert('年龄总和是：' + sum + '\n平均年龄是：' + sum / 5);
+    </script>
+</body>
+
+</html>

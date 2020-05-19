@@ -1,0 +1,102 @@
+@import 'base.less';
+@import './mixin.less';
+@import 'common.less';
+@import '../css/normalize.css';
+
+@b_color: #23acf3;
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  line-height: 46px;
+  height: 46px;
+}
+
+.center {
+  position: fixed;
+  top: 46px;
+  bottom: 50px;
+  width: 100%;
+  overflow-y: auto;
+
+  h4 {
+    padding: 15px 0;
+    box-sizing: border-box;
+  }
+
+  .flow {
+    .info {
+      display: flex;
+      text-align: center;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 26px;
+      box-sizing: border-box;
+
+      .iconfont {
+        font-size: 33px;
+      }
+
+      .icon-jiantou2 {
+        font-size: 30px;
+      }
+
+
+      .inner {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+      }
+    }
+
+    .serve {
+      display: flex;
+      padding: 30px 20px 10px;
+      box-sizing: border-box;
+      justify-content: space-around;
+
+      .online,
+      .call {
+        width: 135px;
+        height: 40px;
+        .center_t(40px);
+        color: @b_color;
+        .border(1px, @b_color, solid, 40px)
+      }
+
+      .online {
+        background-color: @b_color;
+        color: #fff;
+        .border(0, 0, 0, 0);
+        border-radius: 20px;
+      }
+    }
+
+    .superiority {
+      height: 320px;
+      background: url(../img/bg.png) no-repeat bottom right;
+      background-size: 166px 166px;
+      background-color: #fcfcfc;
+
+      .bd {
+
+        .content {
+          display: flex;
+          margin-bottom: 30px;
+
+          .safe {
+            font-size: 14px;
+
+            h5 {
+              color: #000;
+              font-weight: 700;
+              font-size: 18px;
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

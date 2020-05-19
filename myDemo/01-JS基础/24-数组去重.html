@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 去除数组中的重复项
+    // 方法一：includes
+    function removeSame() {
+      let arr = [...arguments];
+      let arr1 = [];
+      for (var i = 0; i < arr.length; i++) {
+        // 如果不包含就加进去
+        if (!arr1.includes(arr[i])) {
+          arr1.push(arr[i]);
+        }
+      }
+      return arr1;
+    }
+    console.log(removeSame(1, 0, 2, 3, 4, 0, 1, 5, 3));
+
+
+    // 方法二、indexOf
+    function removeSame1() {
+      let arr = [...arguments];
+      let arr2 = [];
+      // 遍历
+      arr.forEach(item => {
+        // arr1里面没有item，就加进去
+        if (arr2.indexOf(item) === -1) {
+          arr2.push(item);
+        }
+      })
+      return arr2;
+    }
+    let res2 = removeSame1(1, 2, 3, 4, 5, 4, 2, 3, 8);
+    console.log(res2);
+  </script>
+</body>
+
+</html>

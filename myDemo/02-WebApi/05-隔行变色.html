@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>小小艾同学1</li>
+    <li>小小艾同学2</li>
+    <li>小小艾同学3</li>
+    <li>小小艾同学4</li>
+    <li>小小艾同学5</li>
+    <li>小小艾同学6</li>
+  </ul>
+
+
+  <script>
+    // 1.获取元素
+    let lis = document.querySelectorAll('li');
+
+    // 2.遍历
+    for (let i = 0; i < lis.length; i++) {
+      // 3.隔行变色
+      if (i % 2 === 0) {
+        lis[i].style.backgroundColor = '#f34'
+      } else {
+        lis[i].style.backgroundColor = '#09f'
+      }
+      // 4.定义一个全局变量，储存oldColor
+      var oldColor;
+      // 3.给每一个li设置鼠标移入
+      lis[i].addEventListener('mouseover', function () {
+        //5.每个li的颜色都储存进oldColor中
+        oldColor = lis[i].style.backgroundColor
+        // 6.再将当前li的背景颜色变色
+        this.style.backgroundColor = 'pink'
+      })
+      //7.给每一个li设置鼠标移出
+      lis[i].addEventListener('mouseout', function () {
+        // 8.将每个li的背景色都变为原来的oid值
+        this.style.backgroundColor = oldColor
+      })
+    }
+  </script>
+</body>
+
+</html>

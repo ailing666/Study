@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作用域</title>
+</head>
+
+<body>
+  <script>
+    // 作用域 : 提供变量的一种查找的规则,每个变量有它自己的可使用范围
+    // 1. 什么是变量查找？只要使用变量就得先查找
+       // a = 1
+       // console.log(a)
+
+    // 2. 就近查找原则的‘就近’是针对什么说的？
+          // 就近一定指的是代码在内存中生成的作用域链中的就近查找，而不是依赖于代码的顺序关系！！
+    // 画一个图表示一下当前生成的作用域
+    // var a = 1
+    // function foo() {
+    //   function bar() {
+    //     function dar() {
+    //       console.log(a) 
+    //       // 用到我们的变量  通过一层一层的往外的查找形成了一个链条的关系，就叫做作用域链
+    //     }
+    //   }
+    // }
+    var a = 1
+    function bar(){
+      console.log(a)
+    }
+    function foo(){
+      var a = 2
+      bar()
+    }
+    foo() // ? 1
+    // js中作用域链条的形成依照词法静态作用域的方式，也就是说在函数申明的时候就决定了！！！
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 要求将数组中的0项去掉，将不为0的的值存入到新的数组 生成新的数组
+
+    // 方法一、
+    function removeZero() {
+      let arr = [];
+      for (let i = 0; i < arguments.length; i++) {
+        // 等于0就跳过
+        if (arguments[i] === 0) {
+          continue;
+        }
+        // push进去
+        arr.push(arguments[i]);
+      }
+      return arr;
+    }
+    let res = removeZero(1, 2, 3, 0, 4, 5, 6)
+    console.log(res);
+
+    // 方法二、
+    function removeZero2() {
+      let arr2 = [...arguments];
+      // 筛选出不为0的并返回
+      return arr2.filter(item => { return item !== 0 });;
+    }
+    console.log(removeZero2(1, 2, 3, 0, 1, 2, 3, 0));
+  </script>
+</body>
+
+</html>

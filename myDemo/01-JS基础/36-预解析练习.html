@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // console.log(a);  // undefined
+      // var a = 1;
+      // console.log(a); // 1
+
+      // 2
+      // fn();
+      // function fn() {
+      //   console.log(111);
+      // }
+
+      // function getCool() {
+      //   console.log('柴柴真酷');
+      // }
+      // getCool(); // 飞飞真酷
+
+      // function getCool() {
+      //   console.log('飞飞真酷');
+      // }
+      // getCool(); // 飞飞真酷
+
+      // 预解析过后
+      // function getCool() {
+      //   console.log('柴柴真酷');
+      // }
+
+      // // 后渲染的会覆盖先渲染的
+      // function getCool() {
+      //   console.log('飞飞真酷');
+      // }
+
+      // getCool(); // 飞飞真酷
+      // getCool(); // 飞飞真酷
+
+      // 同名情况下 函数声明的权重比变量高
+      // console.log(a); // 函数a
+      // function a() {
+      //   console.log('aaaa');
+      // }
+      // var a = 1;
+      // console.log(a); // 数值1
+
+      // 预解析过后
+      // function a() {
+      //   console.log('aaaa');
+      // }
+      // // 函数声明其实就可以理解为是一个 a 变量里面装这函数
+
+      // var a;
+      // console.log(a); // 函数a
+      // a = 1; // 将数值1装到a里面去咯
+      // console.log(a); // 1
+
+      // function a() {}
+      // var a;
+      // console.log(a);
+    </script>
+  </body>
+</html>

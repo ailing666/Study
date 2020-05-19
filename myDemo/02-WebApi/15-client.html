@@ -1,0 +1,82 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-02 14:26:40
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-02 14:40:15
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .father {
+    position: relative;
+    left: 100px;
+    width: 500px;
+    height: 500px;
+    padding: 10px;
+    border: 20px solid #000;
+    background-color: #f24;
+  }
+
+  .son {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 10px;
+    height: 200px;
+    background-color: #09f;
+    border: 20px solid #956;
+    overflow-y: auto;
+  }
+</style>
+
+<body>
+
+  <div class="father">
+    <div class="son" style="width :200px">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa, magnam labore ipsam maxime officia natus
+      blanditiis sint. Dignissimos dolore distinctio id, repellat numquam, debitis quia corporis laboriosam nemo, hic
+      error.numquam, debitis quia corporis laboriosam nemo, hic
+      error.</div>
+  </div>
+
+
+  <script>
+    // 1.获取元素
+    let father = document.querySelector('.father');
+    let son = document.querySelector('.son');
+
+    // 返回元素左边框的厚度
+    console.log(father.clientLeft);//20
+    console.log(son.clientLeft);//20
+
+    //返回元素上边框的厚度
+    console.log(father.clientTop);//20
+    console.log(son.clientTop);//20
+    // 就返回自身的高度，包含paddign
+    console.log(father.clientHeight);//500 + 10*2
+    console.log(son.clientHeight);//200
+
+    // 就返回自身的宽度，包含paddign
+    console.log(father.clientWidth);//500 + 10*2
+    // 减去滚动条的宽度
+    console.log(son.clientWidth);//200- 23
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,344 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-04 10:58:11
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-04 21:31:47
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+<style>
+  .scanner {
+    display: grid;
+    grid-template-columns: 50px 300px 130px;
+  }
+
+  #btn {
+    margin: 0;
+    padding: 0;
+    width: 500px;
+    height: 30px;
+    margin-top: 10px;
+    border: 1px solid transparent;
+    outline: none;
+    background-color: #95f;
+  }
+
+  input {
+    outline: none;
+    height: 30px;
+  }
+
+  table {
+    width: 500px;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  td,
+  th {
+    border: 1px solid #333;
+  }
+
+  thead tr {
+    height: 40px;
+    background-color: #ccc;
+  }
+
+  thead tr th:first-child {
+    width: 100px;
+  }
+
+  thead tr th:first-child input {
+    vertical-align: middle;
+  }
+
+  p[class $='Info'] {
+    color: #ccc;
+    font-size: 12px;
+  }
+</style>
+
+<body>
+  <div class="scanner">
+    姓名：<input type="text" id="username" placeholder="请输入姓名" />
+    <p class="usernameInfo">请输入中文或英文</p>
+    年龄：<input type="text" id="userage" placeholder="请输入年龄" />
+    <p class="userageInfo">请输入0-100的数字</p>
+    成绩：<input type="text" id="userscore" placeholder="请输入成绩" />
+    <p class="userscoreInfo">请输入0-100的数字</p>
+    <button id="btn">提交</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <input type="checkbox" id="all" /> 全
+          <input type="checkbox" id="back" />反
+        </th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>成绩</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <script>
+
+    // 1.获取元素
+    let ipts = document.querySelectorAll('input');
+    let btn = document.querySelector('#btn'); // 提交按钮
+    let all = document.querySelector('#all'); //全选
+    let back = document.querySelector('#back'); //反选
+    let tbody = document.querySelector('tbody'); //tbody
+    let username = document.querySelector('#username'); //性名
+    let userage = document.querySelector('#userage'); //年龄
+    let userscore = document.querySelector('#userscore'); //成绩
+    let ageInfo = document.querySelector('.userageInfo');
+    let nameInfo = document.querySelector('.usernameInfo');
+    let scoreInfo = document.querySelector('.userscoreInfo');
+
+    // 2.设置点击事件
+    btn.addEventListener('click', function () {
+      // 3.判断用户输入的格式是否正确
+      let uName = username.value.trim()
+      nameM(uName, nameInfo)
+      let uAge = userage.value.trim()
+      nameM(uAge, ageInfo)
+      let uScore = userscore.value.trim()
+      nameM(uScore, scoreInfo)
+
+      // 4.如果都有效，就创建爱你表格
+      if (ageInfo.innerText === '输入有效' && nameInfo.innerText === '输入有效' && scoreInfo.innerText === '输入有效') {
+
+        // 5调用动态创建表格
+        createTale(uName, uAge, uScore)
+
+        username.value = ''
+        userage.value = ''
+        userscore.value = ''
+
+        //全选
+        let rs = document.querySelectorAll('#radio');
+        all.addEventListener('click', function () {
+          // 获取所有的框
+          // 下面的框的选中状态跟着all走
+          for (let i = 0; i < rs.length; i++) {
+            rs[i].checked = this.checked
+          }
+        })
+
+        // 删除
+        let dels = document.querySelectorAll('.del');
+        for (let i = 0; i < dels.length; i++) {
+          dels[i].onclick = function () {
+            delFoo(this.parentElement.parentElement)
+          }
+        }
+
+        // 上移
+        let ups = document.querySelectorAll('.up');
+        for (let i = 0; i < ups.length; i++) {
+          ups[i].onclick = function () {
+            upFoo(this.parentElement.parentElement)
+          }
+        }
+
+        // 下移
+        let downs = document.querySelectorAll('.down');
+        for (let i = 0; i < downs.length; i++) {
+          downs[i].onclick = function () {
+            downFoo(this.parentElement.parentElement)
+          }
+        }
+      }
+    })
+
+    /*
+    需求：1.验证用户输入的格式，不对就提示
+         2.动态生成tr，td
+        3.操作，删除，上移，下移
+        4.索引
+        5.全选反选
+        6.隔行变色，鼠标移入变色
+    */
+    /**
+      * @name: 封装判断函数
+      * @test: test font
+      * @msg: 
+      * @param {要判断的值} targe
+      * @param {提示信息} info
+      * @return: 
+      */
+    function nameM(targe, info) {
+      let x = isNaN(targe)
+      x = (info == nameInfo) ? !isNaN(targe) : x//判断东湖输入的是不是民资
+      if (x) {
+        info.style.color = 'red'
+        info.innerText = '格式不正确'
+        return
+      } else if (targe > 100 || targe < 0) {
+        info.style.color = 'pink'
+        info.innerText = '范围是：0-100哦'
+        return
+      } else {
+        info.style.color = 'green'
+        info.innerText = '输入有效'
+      }
+    }
+
+    /**
+     * @name: 动态生成表格
+     * @test: test font
+     * @msg: 
+     * @param {姓名} 
+     * @param {年龄} 
+     * @param {成绩} 
+     * @return: 
+     */
+    function createTale(name, age, score) {
+
+      // 1.创建tr
+      let tr = document.createElement('tr');
+
+      // 2.循环生成3个td
+      for (let i = 0; i < 3; i++) {
+        let td = document.createElement('td');
+        td.innerText = ipts[i].value//将用户输入的东西春入其中
+        tr.appendChild(td)//添加进去
+      }
+
+      //创建选择框
+      let tdC = document.createElement('td');
+      tdC.innerHTML = '<input type = "checkbox" onclick = "radioBox(this)" class = "a">'
+      tr.insertBefore(tdC, tr.children[0])
+      tbody.appendChild(tr)
+
+      // 隔行变色
+      let trs = tbody.querySelectorAll('tr');//获取所有tr
+      for (let i = 0; i < trs.length; i++) {
+        if (i % 2 == 0) {
+          trs[i].style.backgroundColor = 'pink'
+        } else {
+          trs[i].style.backgroundColor = 'red'
+        }
+
+        let oldColor = null//存储原来的颜色
+        // ！！！！一定要用传统事件
+        trs[i].onmouseover = function () {
+          oldColor = this.style.backgroundColor
+          this.style.backgroundColor = '#095'
+        }
+        trs[i].onmouseout = function () {
+          trs[i].style.backgroundColor = oldColor
+        }
+      }
+
+      // 创建删除框
+      let tdT = document.createElement('td');
+      tdT.innerHTML = '<a href="javascript:;" class="del">删除 </a> <a href="javascript:;" class = "up">上移 </a> <a href="javascript:;" class = "down">下移 </a>';
+      tr.appendChild(tdT);
+    }
+
+    // 全选通过all影响每个小框
+    all.addEventListener('click', function () {
+      var as = document.querySelectorAll('.a');
+      // 获取所有的框
+      // 下面的框的选中状态跟着all走
+      for (let i = 0; i < as.length; i++) {
+        as[i].checked = this.checked
+      }
+    })
+
+    function radioBox() {
+      // 获取每个a
+      let as = document.querySelectorAll('.a');
+      // 便利他
+      for (let i = 0; i < as.length; i++) {
+        // 如果每个有一个是false,那么all就是false,一个都不false,all就是true
+        if (as[i].checked === false) {
+          all.checked = false
+        } else {
+          all.checked = true
+        }
+      }
+    }
+
+    // 14.反选
+    back.addEventListener('click', function () {
+      // 获取每个a
+      let as = document.querySelectorAll('.a');
+      for (let j = 0; j < as.length; j++) {
+        // 触发事件,让每个a的选中状态相反
+        if (as[j].checked) {
+          as[j].checked = false
+        } else {
+          as[j].checked = true
+          radioBox()
+        }
+
+        if (all.checked) {
+          all.checked = false
+        }
+      }
+    })
+    /**
+     * @name: 删除函数
+     * @test: test font
+     * @msg: 
+     * @param {type} 
+     * @return: 
+     */
+    function delFoo(delTr) {
+      let userSay = confirm('即将移入回收站，确认吗？')
+      if (!userSay) {
+        return
+      } else {
+        tbody.removeChild(delTr)
+      }
+    }
+
+    /**
+     * @name: 
+     * @test: 上移函数
+     * @msg: 
+     * @param {type} 
+     * @return: 
+     */
+    function upFoo(dom) {
+      // 获取它爸爸的爸爸
+      // 如果已经移到了顶
+      if (dom === tbody.children[0]) {
+        alert('你要上天？!');
+        return;
+      } else {
+        // 如果没有到顶，就让tbody把它插在他上一个兄弟的前面
+        tbody.insertBefore(dom, dom.previousElementSibling);
+      }
+    }
+
+    function downFoo(downTrs) {
+      // 获取它爸爸的爸爸
+      // 如果已经是最后一个了
+      if (downTrs === tbody.children[tbody.children.length - 1]) {
+        alert('你要下地？!');
+        return;
+      } else {
+        // 不是最后一个就，tbody把他的下一个元素移到它前面来
+        tbody.insertBefore(downTrs.nextElementSibling, downTrs);
+      }
+    }
+  </script>
+
+</body>
+
+</html>

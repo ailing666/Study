@@ -1,0 +1,96 @@
+/* 参数说明
+ * @border-width 指定边框厚度(单位为px)
+ * @border-color 指定边框颜色
+ * @border-style 指定边框样式
+ * @radius 指定边框圆角半径  默认为null
+ */
+// 文档流  伪元素  js获取dom 伪元素不可以的
+// 装饰内容的元素，它是由css来提供的
+
+.border(@border-width, @border-color, @border-style, @radius: 0px) {
+  position: relative;
+
+  &:after {
+    // 防止点击触发
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: @border-color;
+    border-style: @border-style;
+    border-width: @border-width;
+    border-radius: @radius;
+    overflow: hidden;
+
+    // 适配dpr进行缩放
+    @media screen and (-webkit-min-device-pixel-ratio:1) {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media screen and (-webkit-min-device-pixel-ratio:2) {
+      width: 200%;
+      height: 200%;
+      transform: scale(.5);
+    }
+
+    @media screen and (-webkit-min-device-pixel-ratio:3) {
+      width: 300%;
+      height: 300%;
+      transform: scale(.33333);
+    }
+
+    transform-origin: 0 0;
+  }
+}
+
+// 清除浮动
+.clearfix() {
+  &::after {
+    content: "";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+// 定位居中
+.center_p() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// flex居中 
+.center_f() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//行高居中
+.center_t(@h) {
+  text-align: center;
+  line-height: @h;
+}
+
+/*单行溢出*/
+.one-txt-cut() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*多行溢出*/
+.txt-cut(@l) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @l;
+  -webkit-box-orient: vertical;
+}

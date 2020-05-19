@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //需求：求一个任意数组的反转数组
+
+    // 写法一:反向遍历
+    function getReverse() {
+      let arr = [];
+      for (let i = arguments.length - 1; i >= 0; i--) {
+        arr[arr.length] = arguments[i];
+      }
+      return arr;
+    }
+    let res = getReverse(1, 2, 3, 4, 5);
+    console.log(res);//[5, 4, 3, 2, 1]
+
+    // 写法二：变量交换
+    function getReverse2() {
+      let arr2 = [...arguments];
+
+      // 只需要循环数组长度的一半即可喔
+      for (let i = 0; i < arr2.length / 2; i++) {
+        let temp;
+        // 将[i]存在temp中
+        temp = arr2[i];
+        // 把最后一个i存到i中
+        arr2[i] = arr2[arr2.length - 1 - i];
+        // 在把[i]给最后一个i
+        arr2[arr2.length - 1 - i] = temp;
+      }
+      return arr2;
+    }
+
+    let res2 = getReverse2(1, 2, 3, 4, 5);
+    console.log(res2);// [5, 4, 3, 2, 1]
+
+    // 写法三：用reverse
+    function getReverse3() {
+      let arr3 = [...arguments];
+      return arr3.reverse();
+    }
+    let res3 = getReverse3(1, 2, 3, 4, 5);
+    console.log(res3); //[5, 4, 3, 2, 1]
+  </script>
+</body>
+
+</html>

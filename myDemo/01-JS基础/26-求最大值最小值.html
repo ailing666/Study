@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 需求：返回任意数组的最大值
+
+    // 写法一：假设法
+    function getMax() {
+      let max = arguments[0];
+      for (let i = 0; i < arguments.length; i++) {
+        max = max > arguments[i] ? max : arguments[i];
+      }
+      return max;
+    }
+    let res = getMax(1, 2, 3, 4, 5, 6, 9)
+    console.log(res);
+
+    // 写法二：排序
+    function sortFunc(a, b) {
+      return a - b;//升序
+    }
+
+    function getMax2() {
+      let arr = [...arguments].sort(sortFunc);
+      // 最后一个就是最大值
+      let max = arr[arr.length - 1];
+      return max;
+    }
+    let res2 = getMax2(88, 44, 2, 0, 55);
+    console.log(res2);
+
+
+    // 写法三：es6
+    function getMax3() {
+      return Math.max(...arguments);
+    }
+    let res3 = getMax3(6, 44, 8, 123);
+    console.log(res3);
+  </script>
+</body>
+
+</html>

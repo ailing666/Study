@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <input type="text" />
+
+    <script>
+      let ipt = document.querySelector('input');
+      //   1.键盘弹起 => 键盘松开才触发
+      ipt.addEventListener('keyup', function (e) {
+        console.log('keyup', e.keyCode); //不区分大小写：a 和 A 都是97
+      });
+      //   2.键盘按下 => 键盘按下触发(只识别数字和字母区)
+      ipt.addEventListener('keypress', function (e) {
+        console.log('keypress', e.keyCode); //区分大小写 a = 97 ;A = 65
+      });
+      // 3.键盘按下 => 键盘按下触发识别所有按键
+      ipt.addEventListener('keydown', function (e) {
+        console.log('keydown', e.keyCode); //不区分大小写：a 和 A 都是97
+      });
+      //触发顺序：keydown > keypress > keyup
+    </script>
+  </body>
+</html>

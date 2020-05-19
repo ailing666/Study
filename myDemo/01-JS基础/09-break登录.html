@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 需求：用户输入用户名和密码，只要不是admin、888888就一直提示用户名或密码错误,请重新输入。
+        // 1.接收用户输入的用户名
+        var user = prompt('用户名');
+        // 2.接收用户输入的密码
+        var myPass = prompt('密码');
+
+        // true:表示while是一个死循环
+        while (true) {
+            // 3.如果用户名和密码都正确
+            if (user === 'admin' && myPass === '888888') {
+                alert('登陆成功，欢迎回来');
+                break;  //当用户登陆成功之后，跳出循环。
+            } else if (user != 'admin') {
+                alert('用户名错误，请重新输入');
+                //4.如果用户名错误，重新弹出输入框接收用户名
+                user = prompt('请重新输入用户名');
+            } else {
+                alert('密码错误');
+                //4.如果密码错误，重新弹出输入框接收密码
+                myPass = prompt('请重新输入密码');
+            }
+        }
+    </script>
+</body>
+
+</html>

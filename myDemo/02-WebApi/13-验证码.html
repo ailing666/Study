@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  手机号码： <input type="number"> <button>获取验证码</button>
+  <script>
+    //需求：发送验证吗后10s后才能重新获取
+    // 1.获取元素
+    let btn = document.querySelector('button');
+    //3.设置剩下的秒
+    var sec = 10
+    // 2.设置点击事件
+    btn.addEventListener('click', function () {
+      // 4.点击之后禁用按钮
+      btn.disabled = true
+      // 5.设置定时器
+      let time = setInterval(function () {
+        //6.当时间剩下0秒时，就恢复btn，并清除定时器，改变btn文字
+        if (sec == 0) {
+          clearInterval(time)
+          btn.disabled = false
+          btn.innerText = '获取验证码'
+        } else {
+          //否则就每一秒-1
+          btn.innerText = '重新获取' + sec-- + 's'
+        }
+      }, 1000)
+    })
+
+  </script>
+</body>
+
+</html>

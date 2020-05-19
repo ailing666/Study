@@ -1,0 +1,75 @@
+/* 参数说明
+ * @border-width 指定边框厚度(单位为px)
+ * @border-color 指定边框颜色
+ * @border-style 指定边框样式
+ * @radius 指定边框圆角半径  默认为null
+ */
+/*单行溢出*/
+/*多行溢出*/
+@import '../css/normalize.css';
+.market .container {
+  display: flex;
+}
+.market .container .left {
+  flex: 1;
+}
+.market .container .right {
+  flex: 1;
+}
+.market .container .market_core {
+  width: 100%;
+}
+.market .container .market_core .market_tit {
+  padding: 5px 0;
+  box-sizing: border-box;
+  display: flex;
+}
+.market .container .market_core .three {
+  width: 50%;
+}
+.market .container .market_core .market_product {
+  display: flex;
+}
+.market .container .market_core .market_product .son {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: #fdf4f2;
+  overflow: hidden;
+}
+.market .container .market_core .market_product .son img {
+  width: 90%;
+}
+.market .headline {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  overflow-x: hidden;
+}
+.market .headline img {
+  width: 65px;
+  height: 18px;
+}
+.market .headline span {
+  width: 38px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 5px;
+  color: #ff852a;
+  height: 20px;
+  margin: 0 5px;
+  background-color: #feefec;
+}
+.market .headline p {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.like {
+  width: 80%;
+  margin: 10px auto;
+}

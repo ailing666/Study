@@ -1,0 +1,90 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-02 20:54:14
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-02 21:29:34
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      position: absolute;
+      left: 0;
+      top: 200px;
+      display: block;
+      width: 150px;
+      height: 150px;
+      color: #fff;
+      font-size: 30px;
+      line-height: 150px;
+      text-align: center;
+      background-color: #f34;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="btn400">到400</button>
+  <button class="btn800">到800</button>
+  <button class="btn0">回到起点</button>
+  <div class="box">小艾同学</div>
+  <script>
+    // 1.获取元素
+    let btns = document.querySelectorAll('button');
+    let box = document.querySelector('.box');
+
+    // 2.给400设置点击事件
+    btns[0].addEventListener('click', function () {
+      slowAnimation(box, 400)
+    })
+    // 4.给800设置点击事件
+    btns[1].addEventListener('click', function () {
+      slowAnimation(box, 800)
+    })
+    // 5.给回起点设置点击事件
+    btns[2].addEventListener('click', function () {
+      slowAnimation(box, 0)
+    })
+    //3.封装缓动动画
+    function slowAnimation(obj, target) {
+      //3.8 由于每次掉用动画函数就会执行一次，所以要解决这个bug
+      // 每次点击，先将之前的清空
+      clearInterval(obj.time)
+
+      // 3.1 获取元素距离上一个定位父元素的左边距
+      let position = obj.offsetLeft
+
+      // 3.2 设置定时器 => 用对象的形式设置，既能节约内存空间，还能提升可读性
+      obj.time = setInterval(function () {
+        // 3.3 利用步长公式获取元素每次移动的距离。
+        //步长公式：(目标值 - 现在的位置) / 10
+        let step = (target - obj.offsetLeft) / 10;
+
+        // 3.4 如果步长是整数，需要向上取整，如果是负数，就向下取整
+        //取整是因为移动距离尽可能不要有小数，而且移动距离要取比他绝对值大的数,因为当你求出需要移动8.1时，不可能回退到8，而是取整到9，当你移动-8.9时候，不可能回退到-8，而是要到-9
+        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+
+        // 3.5 位移的距离就是元素初始的左边距离+上移动的距离
+        position += step
+
+        // 3.6 将位移的距离赋值给元素的left
+        obj.style.left = position + 'px'
+
+        //3.7 判断是否到达终点
+        if (position === target) {
+          clearInterval(obj.time)
+        }
+      }, 30)
+    }
+  </script>
+</body>
+
+</html>

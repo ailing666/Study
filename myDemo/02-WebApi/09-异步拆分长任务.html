@@ -1,0 +1,63 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-06 18:52:44
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-06 22:27:31
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+
+<body>
+
+  <button>小艾同学</button>
+  <script type="text/javascript">
+    let btn = document.querySelector('button');
+    btn.addEventListener('click', function () {
+      foo(100000, 20)
+    })
+    /**
+     * @name: 拆分js长任务
+     * @test: test font
+     * @msg:
+     * @param {需要循环的次数}allCont
+     * @param {需要拆分的次数}num
+     * @return:
+     */
+    function foo(allCont, num) {
+      let count = 0; //初始
+      let once = allCont / num//每轮次数
+      let cp = 0
+      setTimeout(function bar() {
+        for (var i = 0; i < once; i++) {
+          var dom = document.createElement('div')
+          dom.innerText = cp + i
+          document.body.appendChild(dom)
+        }
+        count++
+        cp += once
+        count < num && setTimeout(bar, 0)
+      }, 0)
+    }
+    // var timer;
+    // var count = 0
+    // function foo() {
+    //   timer = setTimeout(foo, 0)
+    //   var dom = document.createElement('div')
+    //   dom.innerText = count
+    //   document.body.appendChild(dom)
+    //   count++
+    //   count < 10000000 || clearTimeout(timer)
+    // }
+    // timer = setTimeout(foo, 0)
+  </script>
+</body>

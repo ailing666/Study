@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function a(){
+      console.log('a')
+    }
+    function b(){
+      console.log('b')
+      // 函数内部的代码还是按顺序执行的，遇到新的函数执行才会进行压栈操作
+      a()
+      console.log('b1')
+    }
+    function c(){
+      console.log('c')
+      b()
+      console.log('c1')
+    }
+    c() // ?
+    // 在函数执行的时候会讲该函数压入到执行栈里面，当函数代码执行的时候又遇到了函数执行语句，那么当前函数的执行
+    // 上下文暂停，将新函数压入栈中。。。。当函数执行完毕以后会发生出栈操作，函数的执行上下文交回给紧挨着
+    // 它的底下的函数
+    /*
+      1. c函数入栈，开始执行c函数内部的代码
+      2. 打印c
+      3. 遇到b函数的执行，将b函数压入栈
+      4. 执行b函数内部的代码，打印b
+      5. 将a函数压入栈中，执行a内部的代码，打印出a
+      6. a执行完毕，出栈，将执行上下文交给b
+      7. 执行b函数被打断之后的代码，打印b1
+      8. b函数出栈，将上下文交给了c
+      9. 将被b函数执行打断之后的代码执行一下，打印c1
+      10. c执行完毕，出栈，执行栈清空
+    */
+  </script>
+</body>
+</html>

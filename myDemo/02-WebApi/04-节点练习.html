@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <ul id="father">
+      啦啦啦
+      <li>小艾同学1</li>
+      <li>小艾同学2</li>
+      <li>小艾同学3</li>
+      <li class="my">小艾同学4</li>
+      <li>小艾同学5</li>
+      <li>小艾同学6</li>
+    </ul>
+
+    <script>
+      let father = document.querySelector('#father');
+      let my = document.querySelector('.my');
+      // 1.获取所有的子节点
+      console.log(father.childNodes); //13个//第一行的换行和text连着算一个，其余的换行+类名共计13
+      // 2.获取所有的子元素节点
+      console.log(father.children); //HTMLCollection(6) [li, li, li, li.my, li, li]
+
+      // 3.第一个子元素
+      console.log(father.children[0]); //<li>小艾同学1</li>
+
+      // 4.最后一个子元素
+      console.log(father.children[father.children.length - 1]); //<li>小艾同学6</li>
+
+      // 5.获取上一个元素节点
+      console.log(my.previousElementSibling); //<li>小艾同学3</li>
+
+      // 6.获取下一个元素节点
+      console.log(my.nextElementSibling); //<li>小艾同学5</li>
+
+      // 7.获取父元素
+      console.log(my.parentElement); //ul
+
+      // 8.创建节点
+      let news = document.createElement('p');
+      news.innerText = 'hello';
+
+      // 9.添加元素
+      father.appendChild(news);
+
+      // 10.浅客隆 => 只克隆当前标签及其属性
+      let copy1 = my.cloneNode();
+      console.log(copy1); //<li class="my"></li>
+
+      // 11.深克隆 => 我全都要！
+      let copy2 = my.cloneNode(true);
+      console.log(copy2); //<li class="my">小艾同学4</li>
+
+      // 12.插入元素
+      father.insertBefore(copy2, my);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,369 @@
+@charset "UTF-8";
+@import '../css/normalize.css';
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: #fff;
+  min-width: 320px;
+  max-width: 750px;
+  color: #505050;
+  /* 不允许选中 */
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 0.26rem;
+  /* 去掉默认点击高亮显示 */
+  -webkit-tap-highlight-color: transparent;
+  /*禁止长按链接与图片弹出菜单*/
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
+}
+i {
+  font-style: normal;
+}
+ul,
+ol {
+  list-style: none;
+}
+html,
+body,
+form,
+fieldset,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /*阻止旋转屏幕时自动调整字体大小*/
+  -webkit-text-size-adjust: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+image,
+fieldset {
+  border: none;
+}
+img {
+  vertical-align: middle;
+}
+a:focus,
+*:focus {
+  outline: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+/*取消按钮在iphone上的默认样式*/
+input[type="button"] {
+  -webkit-appearance: none;
+  outline: none;
+}
+input::-webkit-input-placeholder {
+  /*修改webkit中input的planceholder样式*/
+  color: #969;
+}
+textarea::-webkit-input-placeholder {
+  /*修改webkit中input的planceholder样式*/
+  color: #969;
+}
+input:focus::-webkit-input-placeholder {
+  color: #969;
+}
+input::-webkit-input-speech-button {
+  display: none;
+}
+a,
+button,
+input,
+optgroup,
+select,
+textarea {
+  /*去掉a、input和button点击时的蓝色外边框和灰色半透明背景*/
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+}
+a {
+  text-decoration: none;
+}
+/*单行溢出*/
+/*多行溢出*/
+/* 参数说明
+ * @border-width 指定边框厚度(单位为px)
+ * @border-color 指定边框颜色
+ * @border-style 指定边框样式
+ * @radius 指定边框圆角半径  默认为null
+ */
+/*单行溢出*/
+/*多行溢出*/
+.tit {
+  color: #000;
+  text-align: center;
+}
+.tit2 {
+  color: #000;
+  text-align: left;
+  margin: 15px 0;
+}
+footer {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.1);
+}
+footer .item {
+  height: 30px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+footer .item .iconfont {
+  font-size: 30px;
+}
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 36px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  text-align: right;
+}
+h3 {
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+}
+.center {
+  position: fixed;
+  top: 36px;
+  bottom: 50px;
+  width: 100%;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+}
+.center .hd {
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: #fFF;
+}
+.center .hd .user {
+  display: flex;
+  align-items: center;
+}
+.center .hd .user .photo {
+  width: 58px;
+}
+.center .hd .user .name {
+  flex: 1;
+  margin-left: 20px;
+}
+.center .hd .user .name p {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.center .hd .my_nav {
+  display: flex;
+  margin-top: 30px;
+}
+.center .hd .my_nav .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+.center .hd .my_nav .info img {
+  width: 38px;
+  margin-bottom: 10px;
+}
+.center .middle {
+  padding: 15px;
+  box-sizing: border-box;
+}
+.center .middle .my .content {
+  display: flex;
+}
+.center .middle .my .content .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 25%;
+}
+.center .middle .my .content .inner img {
+  width: 22px;
+}
+.center .middle .my .content .inner:first-child {
+  position: relative;
+}
+.center .middle .my .content .inner:first-child p {
+  line-height: 20px;
+  letter-spacing: 2px;
+  width: 40px;
+}
+.center .middle .my .content .inner:first-child:after {
+  pointer-events: none;
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  content: "\0020";
+  border-color: #666;
+  border-style: dashed;
+  border-width: 0 1px 0 0;
+  border-radius: 0px;
+  overflow: hidden;
+  transform-origin: 0 0;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  .center .middle .my .content .inner:first-child:after {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .center .middle .my .content .inner:first-child:after {
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  .center .middle .my .content .inner:first-child:after {
+    width: 300%;
+    height: 300%;
+    transform: scale(0.33333);
+  }
+}
+.center .middle .serve {
+  display: flex;
+  margin: 20px 0;
+}
+.center .middle .serve .left,
+.center .middle .serve .right {
+  width: 50%;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.1);
+}
+.center .middle .serve .left p,
+.center .middle .serve .right p {
+  margin-top: 5px;
+  font-size: 14px;
+}
+.center .middle .serve .left {
+  background: url(../img/my_tool_02_03.png) no-repeat bottom 15px right 15px / 32px;
+  background-color: #fff;
+  margin-right: 20px;
+}
+.center .middle .serve .right {
+  background: url(../img/my_tool_03.png) no-repeat bottom 15px right 15px / 32px;
+  background-color: #fff;
+}
+.center .bottom .tool {
+  padding: 15px;
+  box-sizing: border-box;
+}
+.center .bottom .tool .son {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+.center .bottom .tool .son:after {
+  pointer-events: none;
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  content: "\0020";
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-radius: 0px;
+  overflow: hidden;
+  transform-origin: 0 0;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  .center .bottom .tool .son:after {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .center .bottom .tool .son:after {
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  .center .bottom .tool .son:after {
+    width: 300%;
+    height: 300%;
+    transform: scale(0.33333);
+  }
+}
+.center .bottom .tool .son .iconfont {
+  margin-right: 10px;
+}

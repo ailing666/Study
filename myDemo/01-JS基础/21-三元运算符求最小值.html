@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 需求：求三个数的最大值
+    // 1.获取用户输入内容，并转为Number类型
+    var a = +prompt('输入第一个数字');
+    var b = +prompt('输入第二个数字');
+    var c = +prompt('输入第三个数字');
+    // 2.定义一个最大值
+    var max;
+    // 如果a > b，就将a赋值给max，否则就将b赋值给max
+    // 在将max与c比较，如果max小于c就将c赋值给max
+    (max = a > b ? a : b) > c ? max : max = c;
+    alert(max);
+  </script>
+</body>
+
+</html>

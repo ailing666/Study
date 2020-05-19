@@ -1,0 +1,69 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-02 14:44:35
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-02 14:54:16
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    border: 10px solid red;
+    padding: 10px;
+    margin: 100px;
+    overflow: auto;
+
+  }
+</style>
+</head>
+
+<body>
+  <div>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, vero doloribus! Quisquam
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, vero doloribus! Quisquam
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, vero doloribus! Quisquam
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, vero doloribus! Quisquam
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, vero doloribus! Quisquam
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, vero doloribus! Quisquam
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, vero doloribus! Quisquam
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, vero doloribus! Quisquam
+  </div>
+  <p>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt cum perspiciatis repudiandae. Accusantium hic, eaque
+    beatae dicta sapiente incidunt veritatis, saepe nihil voluptate debitis, deleniti cumque et expedita commodi
+    necessitatibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt cum perspiciatis repudiandae.
+    Accusantium hic, eaque beatae dicta sapiente incidunt veritatis, saepe nihil voluptate debitis, deleniti cumque et
+    expedita commodi necessitatibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt cum perspiciatis
+    repudiandae. Accusantium hic, eaque beatae dicta sapiente incidunt veritatis, saepe nihil voluptate debitis,
+    deleniti cumque et expedita commodi necessitatibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt
+    cum perspiciatis repudiandae. Accusantium hic, eaque beatae dicta sapiente incidunt veritatis, saepe nihil voluptate
+    debitis, deleniti cumque et expedita commodi necessitatibus.
+  </p>
+  <script>
+    // 1.获取元素
+    let div = document.querySelector('div');
+
+    div.addEventListener('scroll', function () {
+      console.log(div.scrollTop);//被卷上去的高度
+      console.log(div.scrollLeft);
+
+    })
+    console.log(div.scrollWidth);//没有滚动条前200+ 10*2 => 滚动条后：203
+    console.log(div.scrollHeight);//没有滚动条前200 + 10* 2 => 滚动条后：713
+
+  </script>
+</body>
+
+</html>

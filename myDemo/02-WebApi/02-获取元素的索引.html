@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>按钮0</button>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+
+    <script>
+      //需求 :点击按钮,获取对应的下标(索引)
+
+      //1.获取元素
+      let btns = document.querySelectorAll('button');
+
+      // 2.遍历
+      for (let i = 0; i < btns.length; i++) {
+        // 3.将i存到自定义属性中
+        btns[i].index = i;
+        // 4.给每个btn设置点击事件
+        btns[i].addEventListener('click', function () {
+          console.log(this.index);
+        });
+      }
+    </script>
+  </body>
+</html>

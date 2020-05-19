@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #fff;
+  color: #505050;
+  /* 不允许选中 */
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 0.26rem;
+  /* 去掉默认点击高亮显示 */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  /*禁止长按链接与图片弹出菜单*/
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+i {
+  font-style: normal;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html,
+body,
+form,
+fieldset,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /*阻止旋转屏幕时自动调整字体大小*/
+  -webkit-text-size-adjust: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+image,
+fieldset {
+  border: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+a:focus,
+*:focus {
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+/*取消按钮在iphone上的默认样式*/
+input[type="button"] {
+  -webkit-appearance: none;
+  outline: none;
+}
+
+input::-webkit-input-placeholder {
+  /*修改webkit中input的planceholder样式*/
+  color: #969;
+}
+
+textarea::-webkit-input-placeholder {
+  /*修改webkit中input的planceholder样式*/
+  color: #969;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: #969;
+}
+
+input::-webkit-input-speech-button {
+  display: none;
+}
+
+a,
+button,
+input,
+optgroup,
+select,
+textarea {
+  /*去掉a、input和button点击时的蓝色外边框和灰色半透明背景*/
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+// 清除浮动
+.clearfix() {
+  &::after {
+    content: "";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+// 定位居中
+.center() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//   flex居中
+.center_f() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*单行溢出*/
+.one-txt-cut() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*多行溢出*/
+.txt-cut(@l) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @l;
+  -webkit-box-orient: vertical;
+}

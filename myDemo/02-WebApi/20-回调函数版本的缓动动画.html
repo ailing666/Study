@@ -1,0 +1,170 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-02 23:06:51
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-02 23:57:57
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #9955ff;
+  }
+</style>
+
+<body>
+  <button>写完睡觉</button>
+  <div class="box">小艾同学</div>
+
+  <script>
+    // 1.获取元素
+    let btn = document.querySelector('button');
+    let box = document.querySelector('.box');
+
+
+    // 2.先位移再回原位在位移再再去中间变大
+    // 水平位移
+    let changeObj1 = {
+      left: 400
+    }
+
+    // 回原点
+    let changeObj2 = {
+      left: 0
+    }
+
+    // 垂直位移
+    let changeObj3 = {
+      top: 400
+    }
+
+    //去中间
+    let changeObj4 = {
+      top: 400,
+      left: 400
+    }
+
+    //变大
+    let changeObj5 = {
+      width: 400,
+      height: 400
+    }
+    let changeObj6 = {
+      top: 0
+    }
+
+    //随机颜色
+    function getColor() {
+      let r = Math.floor(Math.random() * 256)
+      let g = Math.floor(Math.random() * 256)
+      let b = Math.floor(Math.random() * 256)
+      return `rgba(${r},${g},${b})`
+    }
+
+    btn.addEventListener('click', function () {
+      slowAnimation(
+        box,
+        changeObj1,
+        // 回调函数作为参数使用时，补鞥呢掉一共
+        function () {
+          slowAnimation(
+            box,
+            changeObj2,
+            function () {
+              slowAnimation(
+                box,
+                changeObj3,
+                function () {
+                  slowAnimation(
+                    box,
+                    changeObj6,
+                    function () {
+                      slowAnimation(
+                        box,
+                        changeObj4,
+                        function () {
+                          slowAnimation(
+                            box,
+                            changeObj5,
+                            function () {
+                              box.style.backgroundColor = getColor()
+
+                            }
+                          )
+                        }
+                      )
+                    }
+                  )
+                }
+              )
+            }
+          )
+        }
+      )
+    })
+
+    // 3.封装缓动动画
+    function slowAnimation(obj, attrObj, callback) {
+      // 4.不管三七二十一，先清除定时器
+      clearInterval(obj.time)
+
+      // 5.启动定时器
+      obj.time = setInterval(function () {
+
+        //12.再循环外面假设条件成立
+        let flag = true
+
+        //6.遍历对象
+        for (let k in attrObj) {
+          //7.获取初始属性
+          let position = parseInt(window.getComputedStyle(obj)[k])
+
+          //8.步长公式
+          let step = (attrObj[k] - position) / 10
+
+          // 9.取整
+          step = step > 0 ? Math.ceil(step) : Math.floor(step)
+
+          // 10.变化的属性
+          position += step
+
+          // 11.将变化的属性赋值给这个元素
+          obj.style[k] = position + 'px'
+
+          // 13.找打脸的，只要有一个没有达到初始值，就为false
+          if (attrObj[k] !== position) {
+            flag = false
+          }
+        }
+
+        // 14.在循环外判断是否为true
+        if (flag) {
+          //进入代表目标达成
+          clearInterval(obj.time)
+
+          // 15.如果用户传进来的是一个函数，就执行回调函数
+          if (typeof callback === 'function') {
+            callback()
+          }
+        }
+      }, 30)
+    }
+  </script>
+</body>
+
+</html>

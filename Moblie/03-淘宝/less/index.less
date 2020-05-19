@@ -1,0 +1,347 @@
+@import './mixin.less';
+@import '../css/normalize.css';
+
+@main_color: #ff852a;
+@txt_color: #8d8d8d;
+
+
+
+// 公共区域
+.active {
+  background-color: @main_color;
+}
+
+.color1 {
+  font-weight: 700;
+  color: #fe5355;
+}
+
+.color2 {
+  font-weight: 700;
+  color: #ff7620;
+}
+
+.color3 {
+  color: #50bdff;
+}
+
+
+// 1.头部区域 
+header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 1.013333rem /* 38/37.5 */;
+  padding: 0 .266667rem /* 10/37.5 */;
+  box-sizing: border-box;
+  background-color: @main_color;
+
+  .logo {
+    width: 1.12rem /* 42/37.5 */;
+    height: 1.013333rem /* 38/37.5 */;
+  }
+
+  .input_bar {
+    flex: 1;
+    height: .64rem /* 24/37.5 */;
+    margin-top: .213333rem /* 8/37.5 */;
+    text-align: center;
+    line-height: .64rem /* 24/37.5 */;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #ff4e22;
+    font-size: .373333rem /* 14/37.5 */;
+
+    .icon-icon-test5 {
+      font-size: .373333rem /* 14/37.5 */;
+    }
+  }
+}
+
+// 2.中间区域 
+.center {
+  position: fixed;
+  top: 1.013333rem /* 38/37.5 */;
+  bottom: 1.2rem /* 45/37.5 */;
+  width: 100%;
+  overflow-x: auto;
+  background-color: #f2f2f2;
+
+  .center_hd {
+    background-color: #fff;
+
+    .banner {
+      position: relative;
+
+      .adv {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 38px;
+        height: 20px;
+      }
+
+      .dot {
+        justify-content: space-between;
+        position: absolute;
+        bottom: 0;
+        left:50%;
+        transform: translateX(-50%);
+
+        li {
+          float: left;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          margin-right: .08rem /* 3/37.5 */;
+          background-color: rgba(255, 255, 255, .8);
+        }
+
+        .active {
+          background-color: @main_color;
+        }
+      }
+    }
+
+    .line {
+      position: relative;
+      top: -9px;
+      height: 10px;
+      background-color: #fff;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+    }
+
+    .nav {
+      .tb_nav {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fff;
+
+        .inner {
+          width: 20%;
+          text-align: center;
+
+          .info {
+            margin: 5px;
+            font-size: .373333rem /* 14/37.5 */;
+
+            color: @txt_color;
+          }
+        }
+      }
+
+      .line1 {
+        width: 50px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: #dde0e6;
+
+        .active {
+          width: 20px;
+          height: 3px;
+          border-radius: 0 5px 5px 0;
+        }
+      }
+    }
+  }
+
+  .center_bd {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    .market {
+      .line_b {
+        // 手机端一像素边框
+        .border(1px, #ccc, solid);
+      }
+
+      .container {
+        display: flex;
+
+        .left {
+          flex: 1;
+          .border_r(1px, #ccc, solid);
+
+        }
+
+        .right {
+          flex: 1;
+        }
+
+        // 一个
+        .market_core {
+          width: 100%;
+
+          .market_tit {
+            margin: .133333rem /* 5/37.5 */;
+            box-sizing: border-box;
+            display: flex;
+          }
+
+          .three {
+            width: 50%;
+          }
+
+          .market_product {
+            display: flex;
+
+            .son {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              // 不会影响平分
+              margin-right: .266667rem /* 10/37.5 */;
+              border-radius: .266667rem /* 10/37.5 */;
+              background-color: #fdf4f2;
+              overflow: hidden;
+
+              .product_tit {
+                font-size: .426667rem /* 16/37.5 */;
+                
+              }
+              img {
+                width: 90%;
+              }
+            }
+          }
+        }
+      }
+
+
+      .headline {
+        display: flex;
+        align-items: center;
+        padding: 0 .266667rem /* 10/37.5 */;
+        overflow-x: hidden;
+
+
+        img {
+          width: 1.733333rem /* 65/37.5 */;
+          height: .48rem /* 18/37.5 */;
+        }
+
+        span {
+          width: 1.013333rem /* 38/37.5 */;
+          text-align: center;
+          line-height: .533333rem /* 20/37.5 */;
+          border-radius: .133333rem /* 5/37.5 */;
+          color: @main_color;
+          height: .533333rem /* 20/37.5 */;
+          margin: 0 .133333rem /* 5/37.5 */;
+          background-color: #feefec;
+          font-size: .32rem /* 12/37.5 */;
+        }
+
+        p {
+          flex: 1;
+          font-size: .373333rem /* 14/37.5 */;
+          .one-txt-cut();
+        }
+      }
+    }
+
+    .like {
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    .shopping {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .content {
+        overflow: hidden;
+        margin-top: 10px;
+        // width: 50%;
+        width: calc(50vw - 15px);
+        background-color: #fff;
+        box-sizing: border-box;
+        border-radius: 10px;
+
+        .content_bd {
+          padding: 10px;
+
+          .tits {
+            .txt-cut(2);
+            color: #353535;
+            margin: 5px 0;
+            font-size: .32rem /* 12/37.5 */;
+          }
+
+          .price {
+            color: @main_color;
+            font-size: .426667rem /* 16/37.5 */;
+          }
+
+          .people {
+            color: @txt_color;
+            font-size: .32rem /* 12/37.5 */;
+          }
+        }
+      }
+    }
+
+    .bottom {
+      height: 2rem /* 75/37.5 */;
+      background-color: #4e525e;
+
+      .bottom_hd {
+        display: flex;
+        justify-content: space-around;
+
+        .tools {
+          padding: .133333rem /* 5/37.5 */ .266667rem /* 10/37.5 */;
+          margin: .266667rem /* 10/37.5 */ 0;
+          .border(1px, solid,#43464e);
+          border-radius: .133333rem /* 5/37.5 */;
+          background-color: #555965;
+          font-size: .32rem /* 12/37.5 */;
+        }
+      }
+
+      .bottom_bd {
+        margin-bottom: 5px;
+        font-size: .32rem /* 12/37.5 */;
+        text-align: center;
+      }
+    }
+  }
+}
+
+footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.2rem /* 45/37.5 */;
+  background-color: #fff;
+
+  .home,
+  .car,
+  .list,
+  .user,
+  .more {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: .32rem /* 12/37.5 */;
+  }
+
+  .icon-shouye,
+  .icon-icon-test4,
+  .icon-icon-test3,
+  .icon-yonghu,
+  .icon-icon-test15 {
+    font-size: .586667rem /* 22/37.5 */;
+  }
+
+}

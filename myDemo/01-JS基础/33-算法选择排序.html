@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Select(arr) {
+      // 1.外层循环控制次数
+      for (var i = 0; i < arr.length - 1; i++) {
+        // 2.假设第i个是最小
+        var minIndex = i;
+        // 3.j从i+1开始
+        for (var j = i + 1; j < arr.length; j++) {
+          if (arr[j] < arr[minIndex]) {
+            minIndex = j;
+          }
+        }
+
+        // 当假设的最小值和真实的最小值不配，就进行交换，否者不
+        if (minIndex !== i) {
+          arr[i] = [arr[minIndex], arr[minIndex] = arr[i]][0];
+        }
+      }
+      return arr;
+    }
+    var res = Select([2, 6, 20, 1, 7]);
+    console.log(res);
+
+  </script>
+</body>
+
+</html>

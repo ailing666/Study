@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // - 里面现存有  100 块钱。
+        // - 如果存钱，就用输入钱数加上先存的钱数, 之后弹出显示余额提示框
+        // - 如果取钱，就减去取的钱数，之后弹出显示余额提示框
+        // - 如果显示余额，就输出余额
+
+        //1.初始余额 100
+        var money = 100;
+        //2.存钱
+        var save = 0;
+        //3.取钱1
+        var get = 0;
+
+        while (true) {
+            var user = +prompt('请输入您要的操作:' + '\n1.存钱' + '\n2.取钱' + '\n3.显示余额' + '\n4.退出');
+            //存钱
+            if (user === 1) {
+                save = +prompt('请输入要存入的金额');
+                var res = getBalance();
+                alert('您的余额是' + res);
+            } else if (user === 2) {//取钱
+                get = +prompt('请输入要取出的金额');
+                var res = getBalance();
+                if (res >= 0) {
+                    alert('您的余额是' + res);
+                } else {//余额不足
+                    alert('余额不足');
+                }
+            } else if (user === 3) {//显示余额
+                var res = getBalance();
+                alert('您的余额是' + res);
+            } else if (user === 4) {//退出
+                break;
+            } else {
+                alert('指令有误，请输入1~4指令');
+            }
+        }
+        function getBalance() {
+            var balance = money + save - get;
+            return balance;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Insert(arr) {
+      // 1.创建一个空数组,用来返回排序号的结果
+      let newArr = [];
+      // 2.将数组中的第0项添加进去
+      newArr.push(arr[0]);
+      // 3.第0项不需要比较，从1开始即可
+      for (let i = 1; i < arr.length; i++) {
+        // 4.从后往前比较
+        for (let j = newArr.length - 1; j >= 0; j--) {
+          // 5.如果原数组中的项目大于新数组中的
+          if (arr[i] > newArr[j]) {
+            // 就把新数放在原数的后面
+            newArr.splice(j + 1, 0, arr[i]);
+            //这一个就不管了，结束
+            break;
+          }
+          // 6.当比到第一项了，就直接放进去
+          if (j === 0) {
+            newArr.unshift(arr[i]);
+          }
+        }
+      }
+      return newArr;
+    }
+
+    let res = Insert([10, 8, 56, 4]);
+    console.log(res);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 92号汽油，每升6元；如果大于等于20升，那么每升5.9；
+    // 97号汽油，每升7元；如果大于等于30升，那么每升6.95
+
+    //1.获取用户输入的内容
+    var uName = parseInt(prompt("您想加什么油？填写92或者97"));
+    var num = parseFloat(prompt("您想加多少升？"));
+    var price;
+
+    //2.判断是那种类型的
+    if (uName === 92) {
+      //编号是92的时候做的事情
+      if (num >= 20) {
+        price = num * 5.9;
+      } else {
+        price = num * 6;
+      }
+    } else if (uName === 97) {
+      //编号是97的时候做的事情
+      if (num >= 30) {
+        price = num * 6.95;
+      } else {
+        price = num * 7;
+      }
+    } else {
+      alert("不好意思，没有这个编号的汽油！");
+    }
+
+    alert("价格是" + price);
+  </script>
+</body>
+
+</html>

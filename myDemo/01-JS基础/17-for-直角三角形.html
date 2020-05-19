@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.定一个字符串
+        var start = '';
+        for (var i = 0; i < 10; i++) {
+            // 正直角三角形
+            for (var j = 0; j < i; j++) {
+                start += '卍';
+            }
+            start += '\n';
+            // 倒直角三角形
+            for (var j = i; j < 10; j++) {
+                document.write('卍');
+            }
+            document.write('</br>');
+        }
+        console.log(start);
+    </script>
+</body>
+
+</html>

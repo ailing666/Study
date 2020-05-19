@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    function Bubbles(arr) {
+      // 1.外层控制排序的轮数 => 总数组长度-1
+      for (let i = 0; i < arr.length - 1; i++) {
+        // 5.设置一个开关
+        let flag = true;
+        // 2.内层控制每一轮进行的次数 
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+          // 3.比较时，如果前面的大于后面的项，就交换位置
+          if (arr[j] > arr[j + 1]) {
+            // 6.当这一轮发生了变量交换，说明此轮还未排好序，下一轮继续循环
+            flag = false;
+            //es6数据解构交换变量
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+            // 根据运算符优先级交换变量
+            // arr[j] = [arr[j + 1], arr[j + 1] = arr[j]][0];
+            //临时变量交换变量
+            // let temp = arr[j];
+            // arr[j] = arr[j + 1];
+            // arr[j + 1] = temp;
+          }
+        }
+        // 7.如果这一轮没有发生任何交换，代表数组已排序完毕，后面的就不用执行了，就跳出当前循环
+        if (flag === true) {
+          break;
+        }
+      }
+      return arr;
+    }
+    let res = Bubbles([12, 4, 65, 7]);
+    console.log(res);
+  </script>
+</body>
+
+</html>

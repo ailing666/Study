@@ -1,0 +1,85 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-03 21:37:29
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-03 22:05:11
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .clock {
+      width: 600px;
+      height: 600px;
+      margin: 100px auto;
+
+      background: url(./img/clock.jpg) no-repeat;
+      position: relative;
+    }
+
+    .clock div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url(./img/hour.png) no-repeat center center;
+    }
+
+    #m {
+      background-image: url(./img/minute.png);
+    }
+
+    #s {
+      background-image: url(./img/second.png);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="clock">
+    <div id="h"></div>
+    <div id="m"></div>
+    <div id="s"></div>
+  </div>
+  <script>
+    // 1.获取元素
+    let h = document.querySelector('#h');
+    let m = document.querySelector('#m');
+    let s = document.querySelector('#s');
+
+    //  2.开启定时器
+    setInterval(function () {
+      // 3.获取当前时间
+      let date = new Date()
+
+      // 4.获取毫秒
+      let millS = date.getMilliseconds()
+
+      //5.获取时分秒，精确到毫秒
+      let second = date.getSeconds() + millS / 1000
+      let minute = date.getMinutes() + second / 60
+      // 对12取余是为了21点转为9点
+      let hours = date.getHours() % 12 + minute / 60
+
+      // 6.旋转角度
+      // 1个小时,时针转多少角度--->30度
+      // 1分钟,分针转多少角度----->6度
+      // 1秒钟,秒针转多少角度----->6度
+      h.style.transform = `rotate(${hours * 30}deg)`
+      m.style.transform = `rotate(${minute * 6}deg)`
+      s.style.transform = `rotate(${second * 6}deg)`
+    }, 10)
+
+  </script>
+</body>
+
+</html>

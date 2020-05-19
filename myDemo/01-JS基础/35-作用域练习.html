@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1、
+    // var num = 11;
+    // function fn() {
+    //   // 因为函数没有num这个局部变量  所以修改的是全局
+    //   num = 44;
+    //   console.log(num); // 44
+    // }
+
+    // fn();
+
+    // 2、
+    // var num1 = 11;
+    // var num2 = 22;
+    // function fn() {
+    //   var num1 = 33;
+    //   num1 = 44;
+    //   num2 = 55;
+    //   console.log(num1); // 44
+    //   console.log(num2); // 55
+    // }
+
+    // fn();
+
+    // console.log(num1); // 11
+    // console.log(num2); // 55
+
+    // 3
+    // var num1 = 111;
+    // var num2 = 222;
+
+    // 形式参数是一个局部变量
+    // function fn(num1, num2) {
+    //   // var num1 = 111;
+    //   // var num2 = 222;
+    //   num1 = 333;
+    //   num2 = 444;
+    //   console.log(num1); // 333
+    //   console.log(num2); // 444
+    // }
+
+    // fn(num1, num2);
+
+    // console.log(num1); // 111
+    // console.log(num2); // 222
+
+    // 4.
+    var num1 = 111;
+    var num2 = 222;
+
+    function fn(num1) {
+      num1 = 333;
+      num2 = 444;
+      console.log(num1); // 333
+      console.log(num2); // 444
+    }
+
+    fn(num1, num2);
+
+    console.log(num1); // 111
+    console.log(num2); // 444
+  </script>
+</body>
+
+</html>

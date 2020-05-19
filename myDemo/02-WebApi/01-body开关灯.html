@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <button id="btn">关灯</button>
+
+    <script>
+      // 1.获取元素
+      var btn = document.getElementById('btn');
+      var body = document.body;
+      // 3.设置开关
+      var flag = true;
+
+      // 2.设置点击事件
+      btn.addEventListener('click', function () {
+        if (flag) {
+          body.style.backgroundColor = '#000';
+          btn.innerText = '开灯';
+          flag = false;
+        } else {
+          body.style.backgroundColor = '#fff';
+          btn.innerText = '关灯';
+          flag = true;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //需求：求出1-100间所有个位数不为3的和
+
+        // 1.定义一个sum变量来储存和
+        var sum = 0;
+        // 2.先获取1-100的所有数
+        for (var i = 1; i <= 100; i++) {
+            // 3.10以下个位是3的数字只有一个，10-100之间的数字需要单独获取个位数
+            if (i >= 10 && i < 100) {
+                // 4.2位数获取各位数就是对10取模
+                var ge = parseInt(i % 10);
+                // 5.如果个位数是3,就打印出来并且跳过
+                if (ge === 3) {
+                    console.log(i);
+                    continue;
+                }
+                // 6.sum加每一个i
+                sum += i;
+            }
+        }
+        // 7.输出sum，注意10位数以下也有一个个位数是3的数，需要减去
+        console.log(sum - 3);
+    </script>
+</body>
+
+</html>

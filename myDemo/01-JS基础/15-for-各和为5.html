@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 需求：1000-5000中各位上的和为5
+        // 1.获取1000-5000每一位数
+        for (var i = 1000; i <= 5000; i++) {
+            // 2.取各位上的数
+            var ge = i % 10;
+            var shi = parseInt(i / 10 % 10);
+            var bai = parseInt(i / 100 % 10);
+            var qian = parseInt(i / 1000 % 10);
+            // 3.符合条件输出
+            if ((ge + shi + bai + qian) === 5) {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+
+</html>

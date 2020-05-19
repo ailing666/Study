@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 递归求斐波那契:前两项为1，后面的每一项都是前两项的和
+    // 1 1 2 3 5 8 13 21 34...
+    //输入一个数，返回对应的斐波那契数
+    function foo(n) {
+      // 1.停止
+      if (n === 1 || n === 0) {
+        return 1;
+      }
+      // 返回前两项的和
+      return foo(n - 1) + foo(n - 2);
+    }
+    let res = foo(8);
+    console.log(res);
+
+  </script>
+</body>
+
+</html>

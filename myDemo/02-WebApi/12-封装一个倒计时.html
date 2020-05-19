@@ -1,0 +1,78 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-01 15:58:01
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-03 22:07:19
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      margin: 100px;
+    }
+
+    span {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #333;
+      font-size: 20px;
+      color: #fff;
+      text-align: center;
+      line-height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span class="hour"></span>
+    <span class="minute"></span>
+    <span class="second"></span>
+  </div>
+  <script>
+    // 1.获取元素
+    let hour = document.querySelector('.hour');
+    let minute = document.querySelector('.minute');
+    let second = document.querySelector('.second');
+
+    // 2.输入你要的时间
+    let userTime = prompt('请输入时间(格式：2020.5.4)');
+    let myTime = +new Date(userTime)
+
+    // 5.在定时器 之前先调用一次，防止刷新出现初始值
+    dao();
+    // 4.定时器调用函数
+    setInterval(dao, 1000)
+
+    // 3.封装倒计时函数 
+    function dao() {
+      //获取现在的时间
+      let date = +new Date()
+      //时间差
+      let time = (myTime - date) / 1000;
+
+      //获得是时分秒并赋值给节点
+      let hours = zero(parseInt(time / 60 / 60 % 24))
+      hour.innerHTML = hours
+      let minutes = zero(parseInt(time / 60 % 60))
+      minute.innerHTML = minutes
+      let seconds = zero(parseInt(time % 60))
+      second.innerHTML = seconds
+      //补0
+      function zero(num) {
+        return num > 10 ? num : '0' + num
+      }
+    }
+  </script>
+</body>
+
+</html

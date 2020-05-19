@@ -1,0 +1,162 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-03 17:26:28
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-03 22:59:31
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      background-color: #9955ff;
+    }
+
+    .box1 {
+      position: relative;
+      top: 200px;
+      left: 200px;
+      width: 200px;
+      height: 200px;
+      background-color: #09f;
+    }
+  </style>
+
+<body>
+  <button>回调优化</button>
+  <div class="box">小艾同学</div>
+  <div class="box1">绊脚石</div>
+
+  <script>
+    //当用户传入的属性有层级和透明度时候，需要进一步优化
+    // 1.获取元素
+    let btn = document.querySelector('button');
+    let box = document.querySelector('.box');
+
+
+    //2.无层级去中间
+    let changeObj1 = {
+      top: 300,
+      left: 300
+    }
+    //回去原点
+    let changeObj2 = {
+      top: 0,
+      left: 0
+    }
+
+    //3.有层级去中间
+    let changeObj3 = {
+      top: 300,
+      left: 300,
+      'z-index': 1,
+    }
+    //4.变透明
+    let changeObj4 = {
+      width: 400,
+      height: 400,
+      opacity: 0.5
+    }
+
+    //随机颜色
+    function getColor() {
+      let r = Math.floor(Math.random() * 256)
+      let g = Math.floor(Math.random() * 256)
+      let b = Math.floor(Math.random() * 256)
+      return `rgba(${r},${g},${b})`
+    }
+
+
+    // 注册点击事件
+    btn.addEventListener('click', function () {
+      slowAnimation(
+        box,
+        changeObj1,
+        function () {
+          slowAnimation(
+            box,
+            changeObj2,
+            function () {
+              slowAnimation(
+                box,
+                changeObj3,
+                function () {
+                  slowAnimation(
+                    box,
+                    changeObj4,
+                    function () {
+                      box.style.backgroundColor = getColor()
+                    }
+                  )
+                }
+              )
+            }
+          )
+        }
+      )
+    })
+    // 5.封装动画函数
+    function slowAnimation(obj, attrObj, callback) {
+      //6.先清为敬
+      clearInterval(obj.timer)
+
+      // 7.启动定时器
+      obj.timer = setInterval(function () {
+
+        // 16.在循环外设置flag
+        let flag = true
+
+        //8.遍历对象
+        for (let k in attrObj) {
+          // 11.在外面声明
+          let position,
+            step
+          //9.如果用户传入的属性是层级
+          if (k === 'z-index') {
+            //10.直接赋值给他，因为层级是不需要动画的哦
+            obj.style[k] = attrObj[k]
+          } else if (k == 'opacity') {//10.如果用户传入的是透明度
+            // 11.透明度取值0-1，是小数，不方便计算，需要把它放大一百倍
+            position = parseInt(window.getComputedStyle(obj)[k] * 100)
+            step = attrObj[k] * 100 - position
+          } else {
+            // 12. 如果都不是说明是正常属性
+            // 就按照正常的来
+            position = parseInt(window.getComputedStyle(obj)[k])
+            step = (attrObj[k] - position) / 10
+          }
+          // 13.对step取整
+          position += (step = step > 0 ? Math.ceil(step) : Math.floor(step))
+          //14.赋值的时候再判断
+          if (k == 'opacity') {
+            obj.style[k] = position / 100//回复原来的倍数，无单位
+          } else {
+            obj.style[k] = position + 'px'//有单位
+          }
+          // 17.判断是否完成
+          attrObj[k] != position && (flag = false)
+          //19.如果进来这里，说明所有动画已经执行完毕
+          if (flag) {
+            clearInterval(obj.timer)
+            typeof callback === 'function' && callback()
+          }
+        }
+      }, 30)
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 方法一
+        var num1 = 100;
+        var num2 = 200;
+        // 建立一个临时变量，将num1赋值给temp
+        var temp = num1;
+        // 将num2赋值给num1
+        num1 = num2;
+        // 最后把temp得值赋值给num2
+        num2 = temp;
+        console.log('num1:' + num1);
+        console.log('num2:' + num2);
+
+        // 方法二、
+        var num3 = 10;
+        var num4 = 20;
+
+        num3 = num3 + num4;//num3 = 10 + 20
+        num4 = num3 - num4;//num4 = 10 + 20 - 20 = 10
+        num3 = num3 - num4;//num3 = 10 + 20 - 10 = 20
+        console.log('num3:' + num3);
+        console.log('num4:' + num4);
+
+        var a = 10;
+        var b = 10;
+        // 方法三，es6数据解构
+        [a, b] = [b, a]
+        console.log(`a:${a},b:${b}`);//a:20,b:10
+
+        // 方法四,妙啊
+        // =号优先级高于，
+        // 先把a赋值给b，在把b给a
+        a = [b, b = a][0];
+        console.log(`a:${a},b:${b}`);//a:20,b:10
+    </script>
+</body>
+
+</html>

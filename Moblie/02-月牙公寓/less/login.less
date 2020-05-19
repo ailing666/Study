@@ -1,0 +1,81 @@
+@import 'base.less';
+@import './mixin.less';
+@import 'common.less';
+@import '../css/normalize.css';
+
+@m_color: #0a9ceb;
+
+header {
+  position: relative;
+  height: 220px;
+
+  .icon-icon-test22 {
+    font-size: 22px;
+  }
+
+  .logo {
+    .center_p();
+    width: 75px;
+    height: 102px;
+  }
+}
+
+.login {
+  padding: 0 40px;
+  box-sizing: border-box;
+
+
+  .info {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    width: 100%;
+    .border(0 0 1px 0, #ccc, solid);
+
+    &:last-child {
+      display: flex;
+      justify-content: space-between;
+
+      .again {
+        display: flex;
+        align-items: center;
+
+        .icon-icon-test20 {
+          color: #bfbfbf;
+          margin-right: 10px;
+        }
+
+        .send {
+          width: 100px;
+          height: 34px;
+          line-height: 34px;
+          text-align: center;
+          background-color: #e7e7e7;
+          border-radius: 28px;
+        }
+      }
+    }
+  }
+
+}
+
+.complete {
+  width: 300px;
+  height: 40px;
+  .center_t(40px);
+  font-size: 16px;
+  color: #fff;
+  margin: 60px auto 40px;
+  border-radius: 20px;
+  background-color: @m_color;
+}
+
+.tips {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+
+  span {
+    color: @m_color;
+  }
+}

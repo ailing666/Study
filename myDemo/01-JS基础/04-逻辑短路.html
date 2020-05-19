@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 逻辑短路
+        // 逻辑或:表达式1为真就返回表达式1
+        console.log(666 || 0);//666
+
+        // 逻辑与，表达式1为真就返回表达式2
+        console.log(666 && 0);//0
+
+        //逻辑短路:只要确定前面的，后面的不会执行
+        console.log(a || ++a);//a为真，后面的不执行
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .search {
+    position: relative;
+    width: 178px;
+    margin: 100px;
+  }
+
+  .con {
+    display: none;
+    position: absolute;
+    top: -40px;
+    width: 171px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    padding: 5px 0;
+    font-size: 18px;
+    line-height: 20px;
+    color: #333;
+  }
+
+  .con::before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 28px;
+    left: 18px;
+    border: 8px solid #000;
+    border-style: solid dashed dashed;
+    border-color: #fff transparent transparent;
+  }
+</style>
+</head>
+
+<body>
+  <div class="search">
+    <div class="con">123</div>
+    <input type="text" placeholder="请输入您的快递单号" class="jd">
+  </div>
+
+  <script>
+    //需求：用户输入内容时，在上面弹出一个盒子显示，为空这不显示
+    // 1.获取元素
+    let con = document.querySelector('.con');//隐藏的盒子
+    let jd = document.querySelector('.jd');//输入框
+
+    // 2.给jd设置键盘弹起事件
+    //设置键盘按下事件会使文字还没有赋值给con时就触发，所以获得的value永远比实际的少一位数字
+    jd.addEventListener('keyup', function (e) {
+      // 3.当文字不为空的时候显示，并把value赋值给con
+      if (this.value !== '') {
+        con.style.display = 'block'
+        con.innerText = this.value
+      } else {
+        // 4.否则隐藏盒子
+        con.style.display = 'none'
+      }
+    })
+    // 5.给jd设置获得焦点事件
+    jd.addEventListener('focus', function () {
+      if (this.value !== '') {
+        // 6.不为空的时候显示
+        con.style.display = 'block'
+      }
+    })
+    // 6.给jd设置失去焦点事件
+    jd.addEventListener('blur', function () {
+      // 7.失去了就隐藏盒子
+      con.style.display = 'none'
+    })
+
+  </script>
+</body>
