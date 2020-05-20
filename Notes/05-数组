@@ -1,0 +1,514 @@
+# 06-数组
+
+数组（Array）是属于**内置对象  **
+**
+数组中的元素可以是任意的数据类型，也可以是对象，也可以是函数，也可以是数组。数组的元素中，如果存放的是数组，这种数组就是二维数组。
+_ _js中可以_把同一种类型的数据放到一起管理，没有对于强制数据相同的要求，_但建议放同一个类型的~！
+
+相关链接
+[https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+#### 一、创建数组
+
+##### 1.数组字面量
+
+```javascript
+var arr1 = []; // 创建一个空的数组
+
+var arr2 = [1,2,3]; // 创建带初始值的数组
+```
+
+##### 2.构造函数创建数组
+
+```javascript
+var arr = new Array(参数);
+```
+
+- 参数为空，代表一个空数组
+- 参数是一个值，代表的是 **数组长度** ，而不是数组值
+- 参数是多个值，才是数组元素
+
+```javascript
+  <script>
+    var arr = new Array();
+    var arr1 = new Array(3);
+    var arr2 = new Array(3, 2, 1);
+    console.log(arr);
+    console.log(arr1);
+    console.log(arr2);
+  </script>
+```
+
+![](https://cdn.nlark.com/yuque/0/2020/png/1307005/1587358636763-8c645398-839a-4fd2-a9e3-28045efb88da.png#align=left&display=inline&height=360&margin=%5Bobject%20Object%5D&originHeight=360&originWidth=2077&size=0&status=done&style=none&width=2077)
+
+#### 二、数组的索引
+
+**索引** (下标) ：用来访问数组元素的序号，代表的是数组中的元素在数组中的位置（下标从 0 开始算起）
+由于数组有索引这一特性，也可以把数组称为一组有序数列的集合。
+
+##### indexOf()
+
+- 作用：查询对应元素是否在对应数组中
+- 参数
+  - 一个参数：要查询的元素
+  - 二个参数：第一个参数是要查询的元素，第二个参数是从第几个下标开始查询
+- 返回值
+  - 数组中没有该元素，就返回-1
+  - 如果有多个，就只会返回查找到的第一个元素的索引
+
+
+
+```javascript
+  <script>
+    var arr = [1, 2, 3, 4, 5, 6, 7, 5, 8, 9];
+
+    // 一个参数：表示要查的元素
+    console.log(arr.indexOf(3));//2
+
+    //当数组中的没有要查询的元素时，就会返回-1
+    console.log(arr.indexOf(999999));//-1
+
+    // 当数组中有多个这个元素时，只会返回第一个的索引
+    console.log(arr.indexOf(5));//4
+
+    // 二个参数：第一个就是要查询的元素，第二个就是从第几个索引开始查询
+    console.log(arr.indexOf(5, 5));//7
+  </script>
+```
+
+**通过索引值操作数组** 
+
+- 增
+  - arr[arr.length]
+- 删
+  - arr[索引] = null   ->  假删除，只会清空值
+- 改
+  - arr[索引] = 新值;
+- 查
+  - arr[索引]
+
+#### 三、数组的长度
+
+可以使用`length`属性来获取数组的长度(即“元素的个数”)。
+数组的长度 = 数组的最大索引 + 1
+
+**数组的长度可修改** 
+
+```javascript
+    var arr3 = [1, 2, 3, 4];
+
+    arr3.length = 5;
+    console.log(arr3);
+```
+
+![](https://cdn.nlark.com/yuque/0/2020/png/1307005/1587371769446-9f8babdd-5fdc-4958-9fcb-f9fb6ded24a9.png#align=left&display=inline&height=249&margin=%5Bobject%20Object%5D&originHeight=249&originWidth=718&size=0&status=done&style=none&width=718)
+
+#### 四、遍历数组
+
+```javascript
+    for (let i = 0; i < arr3.length; i++) {
+      console.log(arr3[i]);
+    }
+```
+
+es6遍历
+
+```javascript
+    // 遍历数组
+    var arr7 = [555, 666, 999];
+    // 遍历数组的索引
+    for (let index of arr7.keys()) {
+      console.log(index);
+    }
+    // 0
+    // 1
+    // 2
+
+    // 遍历数组中的元素
+    for (let elem of arr7.values()) {
+      console.log(elem);
+    }
+    // 555
+    // 666
+    // 999
+
+    // 遍历数组的索引和元素
+    for (let [index, elem] of arr7.entries()) {
+      console.log(index, elem);
+    }
+    // 0 555
+    // 1 666
+    // 2 999
+  </script>
+```
+
+```javascript
+  <script>
+    var arr = [1, 2, 3, 4];
+
+    arr.forEach((item, index) => {
+      console.log(index, item);
+    })
+    // 0 1
+    // 1 2
+    // 2 3
+    // 3 4 
+
+    for (let [index, elem] of arr.entries()) {
+      console.log(index, elem);
+    }
+    // 0 1
+    // 1 2
+    // 2 3
+    // 3 4 
+  </script>
+```
+
+##### 五、数组中的方法
+
+###### 1.toString()
+
+将数组转为字符串，默认以逗号隔开
+
+```javascript
+  <script>
+    var arr = [1, 2, 3, 4, 5, 6];
+    console.log(arr.toString());//1,2,3,4,5,6
+  </script>
+
+```
+
+###### 2.join()
+
+- 作用：将数组；连接成一个字符串
+- 参数：
+  - 无参：默认是以逗号连接
+  - 对应的连接符：使用这个连接符连接
+  - 一个'' : 将数组无缝连接
+- 返回值：返回连接好的数组
+
+```javascript
+   // 不传参数默认是逗号链接
+    console.log(arr.join());//1,2,3,4,5,6
+
+    // 将数组转为字符串并以传入的符号相连接
+    console.log(arr.join('!')); // 1!2!3!4!5!6
+
+    // 传一个空字符串，就是把数组无缝连接
+    console.log(arr.join('')); //123456
+    console.log(arr);// [1, 2, 3, 4, 5, 6]
+
+```
+
+###### 6.拼接数组concat()
+
+- 作用：将多个数组连接在一起
+- 参数:需要连接的数组，可以一个或多个
+- 返回值：连接好的数组
+- 影响原数组吗？否
+
+```javascript
+    // 拼接数组
+    console.log(arr.concat(arr1));// [1, 2, 3, 4, 5, 6, "小", "艾", "同", "学"]
+    // 这个中方法必须有个变量接收 
+    var arr3 = [].concat(arr, arr1);//[1, 2, 3, 4, 5, 6, "小", "艾", "同", "学"]
+    console.log(arr3);
+
+```
+
+###### 7.添加元素push()
+
+- 作用：往数组的尾部添加内容
+- 参数：需要添加的内容，一个或多个
+- 返回值：新的数组长度
+- 影响原数组吗？是
+
+```javascript
+    var arr = [1, 2, 3, 4, 5, 6, 7];
+
+    // 在数组的最后面添加数据，可以添加，直接修改的原数组，并且返回的是数组的长度
+    var arr1 = arr.push(999, 666, 888);
+    console.log(arr); // [1, 2, 3, 4, 5, 6, 7, 999, 666, 888]
+    console.log(arr1);//10
+
+```
+
+###### 8.删除最后一个pop()
+
+- 作用：往数组的尾部删除内容
+- 参数：无，调用一次删除一个
+- 返回值：被删除的元素
+  - 数组为空时返回undefined
+- 影响原数组吗？是
+
+```javascript
+    //删除数组最后一项，返回被删除的那个元素，只能删除最后一项
+    var arr2 = arr.pop();
+    // pop里面不管跟什么值，都只会删除数组的最后一项
+    // var arr2 = arr.pop(55, 2);
+    console.log(arr);//[1, 2, 3, 4, 5, 6, 7, 999, 666]
+    console.log(arr2);//888
+
+```
+
+###### 9.删除第一个shift()
+
+- 作用：往数组的头部删除内容
+- 参数：无，调用一次删除一个
+- 返回值：被删除的元素
+  - 数组为空时返回undefined
+- 影响原数组吗？是
+
+```javascript
+    // 删除数组第一项,返回被删除这项的值,每次只能删除一个
+    var arr3 = arr.shift()
+    // 里面无论跟什么值，都是一样的
+    // var arr3 = arr.shift(1,2)
+    console.log(arr);//[2, 3, 4, 5, 6, 7, 999, 666]
+    console.log(arr3);//1
+
+```
+
+###### 10.在数组前面添加unshift()
+
+- 作用：往数组的头部添加内容
+- 参数：需要添加的内容，一个或多个
+- 返回值：新数组的长度
+- 影响原数组吗？是
+
+```javascript
+    // 在数组最前面添加数据项，返回数组的长度 ，可以添加多项
+    var arr4 = arr.unshift('困', '死', '了');
+    console.log(arr);//["困", "死", "了", 2, 3, 4, 5, 6, 7, 999, 666]
+    console.log(arr4);//11
+
+```
+
+###### 11.强大的splice()
+
+- 作用：可以实现数组的任意位置的删除，替换和添加
+- 参数：
+  - 无参：一个都不删
+  - 一个参数：表示从这个索引号开始，删到数组的结尾  [start,length-1]
+  - 两个参数：第一个参数的索引号开始，第二个参数就是要删除的个数
+  - 两个以上的参数：第一个参数的索引号开始，第二个参数就是要删除的个数，后面的参数就是要替换的参数，在第一个参数的索引号开始添加
+- 返回值：被删除的元素
+- 影响原数组吗？是
+
+```javascript
+  <script>
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    //此方法会修改原数组的值
+
+    // 如果括号里面不跟值，就是表示一个都不删除，原数组也不会改变
+    var arr1 = arr.splice();
+    console.log(arr);//[1, 2, 3, 4, 5, 6, 7, 8, 9]
+    console.log(arr1);//[]
+
+
+    // 一个参数，表示要删除的项索引开始的位置，一直到结束
+    //返回的是被删除的元素组成的数组，元素组已改变
+    var arr2 = arr.splice(6);//从第二项开始包括第二项，全部删除
+    console.log(arr2);//[7, 8, 9]
+    console.log(arr);//[1, 2, 3, 4, 5, 6]
+
+    //两个参数：
+    //第一个参数：表示要删除的数组开始的索引值
+    // 第二个参数表示：从第一个参数的索引开始(包括)，要删除的个数
+    var arr3 = arr.splice(2, 3);//从索引2开始删除3个
+    console.log(arr3);//[3, 4, 5]
+    console.log(arr);//[1, 2, 6]
+
+    var arr4 = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+    // 超过两个参数
+    //第一个参数：表示要删除的数组开始的索引值
+    // 第二个参数表示：从第一个参数的索引开始(包括)，要删除的个数
+    //后面的参数是替换删除掉是数据的位置，有多少个就替换多少个
+    var arr5 = arr4.splice(3, 4, 1, 2, 3, 5, 6)
+    console.log(arr4);//[9, 8, 7, 1, 2, 3, 5, 6, 2, 1, 0]
+    console.log(arr5);//[6, 5, 4, 3]
+  </script>
+
+```
+
+###### 12.复制slice()
+
+- 作用：提取数组中的内容
+- 参数：
+  - 无参：完整的复制了原数组
+  - 一个参数：表示从这个索引号开始，提取到最后
+  - 两个参数：表示从第一个参数的索引号开始，复制到第二个参数的索引号[start.end)
+- 返回值：被删除的元素
+- 影响原数组吗？否
+
+```javascript
+  <script>
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // 此方法不会改变原数组
+
+    //没有参数，相当于将原数组完整的复制了一份
+    var arr1 = arr.slice();
+    console.log(arr);
+    console.log(arr1);
+
+    // 一个参数:表示复制数组中的数据项的索引开始的位置，一直到数组结束位置
+    var arr2 = arr.slice(2);
+    console.log(arr);//[1, 2, 3, 4, 5, 6, 7, 8, 9]
+    console.log(arr2);// [3, 4, 5, 6, 7, 8, 9]
+
+
+    // 二个参数
+    // 第一个表示复制数据项的索引开始的位置，第二个表示结束的索引的位置（但是这个位置上的值取不到）
+    var arr3 = arr.slice(2, 5)//[2,5)
+    console.log(arr);// [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    console.log(arr3); //[3, 4, 5]
+  </script>
+
+```
+
+###### 13.翻转数组reveser()
+
+- 作用：翻转数组
+- 参数：无
+- 返回值：翻转后的数组
+- 影响原数组吗？是
+
+```javascript
+    // 翻转数组，返回的是翻转的数组(原数组也会改变)
+    var arr4 = arr.reverse();
+    console.log(arr);//[9, 8, 7, 6, 5, 4, 3, 2, 1]
+    console.log(arr4);//[9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+```
+
+###### 14.数组排序sort()
+
+- 作用：将传入的数组进行升序或降序排序
+- 参数：回调函数
+  - return a - b 升序
+  - return b - a 降序
+- 返回值：排序后的数组
+- 影响原数组吗？是
+
+```javascript
+  <script>
+    var arr = [5, 9, 5, 7, 3, 99, 0, 12];
+    var arr1 = [5, 9, 5, 7, 3, 99, 0, 12];
+
+    var arr2 = arr.reverse();
+    console.log(arr2);
+
+
+    // 回调函数
+    function sortFunc(a, b) {
+      return b - a;//降序
+    }
+
+    function sortFunc2(a, b) {
+      return a - b;//升序
+    }
+    // 使用sort()必须调用函数，否则会将里面的数字转为字符串，根据UTF-16编码按位排序
+    var arr3 = arr.sort();
+    console.log(arr3); //[0, 12, 3, 5, 5, 7, 9, 99]
+
+
+    var res = arr.sort(sortFunc);
+    var res2 = arr1.sort(sortFunc2);
+
+    console.log(res);// [99, 12, 9, 7, 5, 5, 3, 0]
+    console.log(res2);// [0, 3, 5, 5, 7, 9, 12, 99]
+  </script>
+
+```
+
+###### 
+
+##### 六、es6的扩展
+
+[https://es6.ruanyifeng.com/#docs/array](https://es6.ruanyifeng.com/#docs/array)
+`...` 语法
+
+```javascript
+  <script>
+    var arr = [1, 2, 3];
+    var arr1 = [4, 5, 6];
+    var arr2 = ['小', '艾', '同学'];
+
+    // 把数组展开为用逗号分隔的该数组中所有元素的序列
+    console.log(...arr);//1 2 3 
+
+    //求数组中的最大值
+    console.log(Math.max(...arr1));//6
+   //求数组中的最小值
+    console.log(Math.min(...arr1));//4
+
+
+    // 数组拼接
+    arr.push(...arr1)
+    console.log(arr);//[1, 2, 3, 4, 5, 6]
+
+    // 复制数组
+    // 写法一
+    var arr2 = [...arr1];
+    console.log(arr2);//[4, 5, 6]
+
+    var arr2 = ['冲', '冲', '冲'];
+    // 这种复制实际上是克隆了原数组的值，而不是地址值所以修改arr2，不会影响arr1
+    console.log(arr2);//["冲", "冲", "冲"]
+    console.log(arr1);//[4, 5, 6]
+
+    // 将字符串转为真正的数组
+    var str = 'Hello World';
+    // 空格会解析
+    console.log([...str]);//["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d"]
+
+    // Array.of基本上可以用来替代Array()或new Array()，并且不存在由于参数不同而导致的重载。它的行为非常统一。
+    // 用newArray时候，里面只有一值，是代表数组的长度
+    var arr4 = new Array(3);//[empty × 3]
+    console.log(arr4);
+
+    // 用Array.of即使里面是一个值，也是数组中的元素
+    var arr5 = Array.of(3); //[3]
+    console.log(arr5);
+
+    // .fill可以替换数组中的元素
+    console.log(arr);//[1, 2, 3, 4, 5, 6]
+
+    // fill只穿一个参数默认全部替换
+    arr.fill(666);
+    console.log(arr);// [666, 666, 666, 666, 666, 666]
+
+    // fill第一个参数：要替换的元素
+    // fill第二个参数：替换索引开始的位置
+    // fill第三个参数：替换的索引结束位置，不含这个值
+    arr.fill(7, 1, 3); //[1,3)
+    console.log(arr); // [666, 7, 7 666, 666, 666]
+
+    // fill第一参数还是要替换的元素
+    // fill第二个参数是要替换的索引开始的位置，没有第三个参数，默认后面的全部替换
+    arr.fill(555, 2)
+    console.log(arr);//[666, 7, 555, 555, 555, 555]
+
+  </script>
+```
+
+es6过滤器，真香写法！
+
+```javascript
+  <script>
+    // 需求：返回数组中大于5的数
+    var arr = [1, 2, 6, 7, 4, 3, 9, 5, 8]
+
+    // 1.筛选器
+    var res = arr.filter(function (item) {
+      // 返回item大于5的
+      return item > 5;
+    })
+    console.log(res);//[6, 7, 9, 8]
+
+    // 2.箭头语法
+    var res1 = arr.filter(item => { return item > 5 })
+    console.log(res1);//[6, 7, 9, 8]
+  </script>
+```
+
