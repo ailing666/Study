@@ -1,0 +1,82 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-05 08:43:15
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-21 21:29:46
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<script src="../jquery.min.js"></script>
+<style>
+
+</style>
+
+<body>
+  <div class="box">
+    <p>亲儿子</p>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li class="item">3</li>
+      <li>4
+        <p>野孩子</p>
+      </li>
+      <li>5</li>
+    </ul>
+    <ol>
+      <li>1</li>
+      <li>2</li>
+      <li class="inner">3</li>
+      <li>4</li>
+    </ol>
+  </div>
+
+
+  <script>
+    // 1.找父元素(最近一级)
+    console.log($(".item").parent());//ul
+
+    // 2.找亲儿子
+    $(".box").children("p").css("background", "pink")
+
+    // 3.找所有孩子
+    $(".box").find("p").css("fontSize", 30)
+
+    // 4.除了这个元素外的所有兄弟
+    $('.item').siblings("li").css('color', "green")
+
+    // 5.当前元素的上一个兄弟
+    $(".inner").prev("li").text('上一个')
+
+    // 6.当前元素前面的所有兄弟
+    $(".inner").prevAll("li").css("color", "blue")
+
+    // 7.当前元素下一个兄弟
+    $(".inner").nextAll("li").text('下一个')
+
+    //8.当前元素后面的所有兄弟
+    $(".inner").nextAll("li").css("color", "red")
+    // 9.第n个元素（推荐第二种）
+    $("ul li:eq(0)").css("backgroundColor", "skyblue")//eq()里面的值是固定的
+    $("ul li").eq(0).css("backgroundColor", "skyblue")//eq()里面的值可以是一个变量
+
+    //10.查询该元素是否有这个类名:有就返回true，没有就是false
+    console.log($("ul li").eq(2).hasClass("item"));//true
+    console.log($("ul li").eq(1).hasClass("item"));//false
+
+    // 11.返回指定的祖先元素
+    console.log($("p").parents(".box"));
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-05 08:30:56
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-21 21:23:37
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<script src="../jquery.min.js"></script>
+
+<body>
+
+  <div class="box">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li class="item">3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+    <ol>
+      <li>1</li>
+      <li>2</li>
+      <li class="inner">3</li>
+      <li>4</li>
+    </ol>
+    <input type="password" value="">
+    <input type="text" value="">
+  </div>
+
+  <script>
+
+    // 1.；类选择器
+    $('.box').css("backgroundColor", "pink")
+
+    // 2.子代选择器
+    $(".box > ul").css("fontSize", 20)
+
+    // 3.后代选择器
+    $("ul li").css("height", 50)
+
+    //4.交集选择器
+    $("li.item").css("backgroundColor", "red")
+
+    //5.并集选择器
+    $(".item,.inner").css("color", "green")
+
+    // 6.第几个
+    $("ul li:eq(2)").css("width", 200)
+
+    // 7.奇数
+    $("ul li:odd").css("background", "yellow")
+
+    // 8.偶数
+    $("ul li:even").css("background", "blue")
+
+    // 9.属性
+    $("input[type = text]").css("background", "blue")
+
+    //10.最后一个
+    $("ol li:last").text('最后一个小艾同学')
+
+    //11.第一个
+    $("ol li:first").text('第一个小艾同学')
+  </script>
+</body>
+
+</html>
