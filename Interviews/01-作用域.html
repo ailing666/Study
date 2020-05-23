@@ -1,0 +1,34 @@
+<!--
+ * @Descripttion: 持续学习
+ * @Author: 小艾同学
+ * @Date: 2020-04-21 07:26:18
+ * @LastEditors: 小艾同学
+ * @LastEditTime: 2020-05-23 16:11:17
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var scope = "global scope";
+    function foo() {
+      var scope = "local scope";
+      function f() {
+        return scope;
+      }
+      return f;
+    }
+    console.log(foo()());
+    /*
+      解析：foo()调用给，返回的是函数f，foo()()实际上是调用函数f，函数f的返回值是scope，f中没有这个变量，就沿着作用域链往外寻找，找到foo中的scope，所以打印local scope
+    */
+  </script>
+</body>
+
+</html>

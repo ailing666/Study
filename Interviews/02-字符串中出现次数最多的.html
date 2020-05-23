@@ -1,0 +1,52 @@
+<!--
+ * @Descripttion: 持续学习
+ * @Author: 小艾同学
+ * @Date: 2020-05-22 21:05:19
+ * @LastEditors: 小艾同学
+ * @LastEditTime: 2020-05-23 16:14:04
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 需求：求出字符串中出现次数最多的数，并去重排序输出一个字符串
+    var str = '8587263747153203552943982'
+
+    // 1.先将每一项存到数组中
+    let arr = str.split('')
+    // 2.创建一个空对象，通过对象键值对的特点记录字符串出现的次数
+    let obj = {}
+    for (let i = 0; i < arr.length; i++) {
+      // 如果对象中没有这个字符串，就以当前的字符串为键名添加属性，并将键值设置为1，表示出现了一次
+      //如果该字符串已经出现过一次看=了，下一次出现时，次数加一
+      obj[arr[i]] ? obj[arr[i]]++ : obj[arr[i]] = 1
+    }
+
+    let arrVal = []
+    let arrK = []
+    for (var k in obj) {
+      arrK.push(k)
+      // 将对象的值添加进新数组
+      arrVal.push(obj[k])
+      // 求数组中的最大值，就是出现最多的次数
+      var maxCount = Math.max(...arrVal)
+    }
+
+    for (let k in obj) {
+      // 如果对象的值为最大次数，那么这个键就是出现次数最多的数字
+      obj[k] === maxCount && console.log(`${k}出现了${maxCount}次`);
+    }
+    //将数组转为字符串
+    console.log(arrK.toString());
+  </script>
+</body>
+
+</html>
