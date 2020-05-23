@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let addZero = a => a < 10 ? '0' + a : a;
+
+    let date = new Date();
+
+    //倒计时的时间
+    let date2 = new Date(2020, 11, 31);//设置的时候，月份要减1
+
+    // 倒计时距离现在的秒
+    let time = (date2 - date) / 1000;
+
+    // 将秒转化成天，小时，分钟
+    let d = Math.floor(time / 60 / 60 / 24);
+    // 将不够天数的转为小时
+    let h = Math.floor(time / 60 / 60 % 24);
+    let m = Math.floor(time / 60 % 60);
+    var s = Math.floor(time % 60);
+
+    console.log(`距离2020-12-31还剩${addZero(d)}天${addZero(h)}时${addZero(m)}分${addZero(s)}秒`);
+  </script>
+</body>
+
+</html>
