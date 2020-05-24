@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var nums = [2, 7, 11, 15];
+    var target = 9;
+    let temp = []
+    for (let i = 0; i < nums.length; i++) {
+      let dif = target - nums[i]
+      if (temp[dif] !== undefined) {
+        console.log([temp[dif], i]);
+
+      }
+      temp[nums[i]] = i;
+    }
+  </script>
+</body>
+
+</html>
