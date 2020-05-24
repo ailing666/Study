@@ -1,0 +1,54 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-13 20:47:08
+ * @LastEditors: 小艾同学
+ * @LastEditTime: 2020-05-21 22:48:36
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+
+    function fun(n, o) {
+      console.log(o);
+      return {
+        fun: function (m) {
+          return fun(m, n);
+        }
+      }
+    }
+    var a = fun(0);
+    a.fun(1);
+    a.fun(2);
+    a.fun(3);
+    var b = fun(0).fun(1).fun(2).fun(3);
+    var c = fun(0).fun(1);
+    c.fun(2); c.fun(3);
+    //undefined,0,0,0
+    /*
+    第一次执行 0，此时 n = 0，o 未赋值，直接调用所以是 undefined
+    第二次用 a 调用 fun，此时调用的是第二层函数，即 m = 1，由于产生闭包，所以 n 能访问外面的 0 ,再把 (m，n) 作为 fun 的参数返回，此时fun的形参是(1,0)
+
+
+    第三次执行 第一次结果 n = 0,o = undefined ； 第二次调用了里层的函数，传入 m = 1, n = 外面的 0,再作为参数返回，fun(1,0);第三次是基于fun(1,0)的基础上调用里层的函数传入m = 2,n = 外面的 1,所以返回 fun(2,1) ;第四次同理返回fun(3,2)
+
+    第四次执行 第一次结果依旧是undefined，第二次掉用里层函数传入 m = 1,此时 n 访问到外面的 0 ,多以返回fun(1,0)，第三次调用是基于fun(1,0)的基础上调用里层函数，并传入m = 2,此时 n 为外面的 1 ，所以返回 fun(2,1)；第四次调用还是基于 fun(1,0)的基础上调用里层函数，并传入m = 3,此时 n 依然为1，返回 fun(2,1)
+    */
+
+  </script>
+</body>
+
+</html>

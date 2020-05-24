@@ -1,0 +1,41 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-08 22:43:19
+ * @LastEditors: 小艾同学
+ * @LastEditTime: 2020-05-24 22:20:42
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+
+    var a = 1;
+    (function a() {
+      a = 2;
+      console.log(a);
+    })();
+    /*输出结果是
+    ƒ a() {
+      a = 2;
+      console.log(a);
+    }
+非匿名自执行函数中的变量是只读的，不能修改！！如果不声明直接赋值，无效！
+整条语句无效，作用域中不生成该变量
+    */
+  </script>
+</body>
+
+</html>

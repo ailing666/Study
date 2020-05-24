@@ -1,0 +1,49 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-08 22:33:34
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-08 22:42:35
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+    var a = 10
+    function foo() {
+      console.log(a);
+      var a = 20
+    }
+    foo()
+
+    let b = 10
+    function bar() {
+      // 因为ES6中没有变量提升，所以找不到b
+      // 无法在初始化之前访问“b”
+      console.log(b);//Cannot access 'b' before initialization
+      let b = 20
+    }
+    bar()
+
+    {
+      let a = 1;
+    }
+    // let块级作用域
+    console.log(a)  //Uncaught ReferenceError: a is not defined
+
+  </script>
+</body>
+
+</html>

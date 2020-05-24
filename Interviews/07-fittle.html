@@ -1,0 +1,51 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-10 22:15:44
+ * @LastEditors: 小艾同学
+ * @LastEditTime: 2020-05-24 22:22:18
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+
+    // 需求：
+    // 3  实现一个filter函数，可以处理任意一个数组并且返回过滤之后的数组
+    // var arr = [1, 2, 3, 4, 5, 6]
+    // var newArr = filter(arr, function (item) {
+    //   return item % 2
+    // })
+    // [2, 4, 6]
+
+
+    function fitter(arr, callback) {
+      var newArr = []
+      for (var i = 0; i < arr.length; i++) {
+        (!callback(arr[i])) && newArr.push(arr[i])
+      }
+      return newArr
+    }
+    var arr = [1, 2, 3, 4, 5, 6]
+    var newArr = fitter(arr, function (item) {
+      return item % 2
+    })
+    console.log(arr, newArr)
+
+
+  </script>
+</body>
+
+</html>

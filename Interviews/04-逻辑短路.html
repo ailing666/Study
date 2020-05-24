@@ -1,0 +1,37 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-09 21:37:39
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-09 21:47:40
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+
+    var a = 10
+    var b = 20
+    var c = --a
+    console.log(++a - ++b - a++ + c-- || ++a + ++b);
+    // 11 - 21 - 11 + 9
+    // 11   b:21   a:12   c:8
+    console.log(++a + ++c && ++b + ++c);
+              // 11  + 9     22   10
+             //  11   9     22    10
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-08 23:00:25
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-08 23:46:36
+ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+    // 让下面代码的打印结果为 20,10
+    // var b = 10;
+    // (function b() {
+    //   b = 20;
+    //   console.log(b);
+    // })();
+    // /*
+    // 打印结果
+    //  b() {
+    //   b = 20;
+    //   console.log(b);
+    // }*/
+    // //修改后
+
+    var b = 10;
+    (function b(b) {
+      b = 20;
+      console.log(b, window.b);//20 10
+    })(b);
+
+    // // function b() {}
+    // // var b = 10;
+    // // console.log(b);
+
+    // console.log(a); // 函数a
+    // function a() {
+    //   console.log('aaaa');
+    // }
+    // var a = 1;
+    // console.log(a); // 数值1
+    (function a() {
+      a = 1
+      console.log(a)
+    })();
+
+    (function () {
+      var a = 1
+      console.log(a)
+    })()
+  </script>
+</body>
+
+</html>
