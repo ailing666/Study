@@ -1,0 +1,167 @@
+<!--
+ * @Descripttion: 持续学习
+ * @Author: 小艾同学
+ * @Date: 2020-05-25 22:22:41
+ * @LastEditors: 小艾同学
+ * @LastEditTime: 2020-05-25 23:16:34
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /*
+    基于定位：
+        方法一：给父盒子加上定位，除了静态定位其他的定位方式都可以，再给子盒子加一个相对定位，让left和top值为50%，此时这个百分比是基于父盒子的宽高，这样会实现盒子的左上角在父盒子中水平垂直居中，要想让这个子盒子水平垂直居中，还需要让他向上移动自身高度的一半，向左移动自身高度的一半，此时有一个缺点就是他必须知道子盒子的准确宽高
+
+        方法二：定位不变，让子盒子的四个偏移属性都为0，然后加上margin : auto,此方法的优点是，不需要考虑子盒子的宽高，但是大盒子必须有宽高，否者会将子盒子的宽或高拉伸到与父盒子相等
+
+        方法三：定位不变，让子盒子的left和top为50%,此时这个百分比是基于父盒子的宽高，这样会实现盒子的左上角在父盒子中水平垂直居中，然后利用CSS3的transform属性，让子盒子向左移动自身宽度的一半，向上移动自身的一半，这里可以用50%，因为这个百分比是基于盒子自身的。这个方法不用考虑父盒子有没有设置宽高，也不用考虑子盒子的宽高，缺点就是兼容性不太好
+
+    基于flex布局:
+        给父盒子添加display:flex，转为flex容器，在给父盒子设置主轴侧轴对齐方式都为center
+
+    基于js:
+        通过offsetWidth/offsetHeight获得子盒子和父盒子的宽高，再将子盒子的left/top设置为父盒子减子盒子的一半，拼接上单位
+    基于table:
+        将父盒子转为表格布局，设置text-align : center文本水平居中，文本垂直对齐方式vertical-align:middle居中，再将子盒子转为行内块
+    基于Grid
+        方法一：和flex布局一样，将大盒子转为grid容器，设置justify-content: center;align-items: center;
+
+        方法二：将大盒子水平网格线行左右设置为1fr自适应，中间为子盒子的高度，列上下的1fr，中间为子盒子高度，，在给子盒子设置一个起始位置为2/2/3/3即可
+    */
+    .father {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    }
+
+    .son {
+      position: absolute;
+      /*方法一 
+      top: 50%;
+      left: 50%;
+      margin-top: -25px;
+      margin-left: -25px; */
+
+      /*方法二 
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto; */
+
+      /* 方法三 */
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background-color: pink;
+    }
+
+    .box1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    }
+
+    .box2 {
+      width: 50px;
+      height: 50px;
+      background-color: blueviolet;
+    }
+
+    #box1 {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    }
+
+    #box2 {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: skyblue;
+    }
+
+    .box3 {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    }
+
+    .box4 {
+      /* display: inline-table; */
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background-color: orange;
+    }
+
+    #box3 {
+      /*方法一 
+      display: grid;
+      justify-content: center;
+      align-items: center; */
+
+      display: grid;
+      grid-template-columns: 1fr 50px 1fr;
+      grid-template-rows: 1fr 50px 1fr;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    }
+
+    #box4 {
+      grid-area: 2/2/3/3;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="father">
+    <div class="son"></div>
+  </div>
+
+  <div class="box1">
+    <div class="box2"></div>
+  </div>
+
+  <div id="box1">
+    <div id="box2"></div>
+  </div>
+
+  <div class="box3">
+    <div class="box4"></div>
+  </div>
+
+  <div id="box3">
+    <div id="box4"></div>
+  </div>
+  <script>
+    let sonW = box2.offsetWidth,
+      sonH = box2.offsetHeight,
+      fatherW = box1.offsetWidth,
+      fatherH = box1.offsetHeight;
+    box2.style.left = (fatherW - sonW) / 2 + "px"
+    box2.style.top = (fatherH - sonH) / 2 + "px"
+  </script>
+</body>
+
+</html>
