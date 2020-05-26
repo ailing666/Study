@@ -1,0 +1,46 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-20 13:43:00
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-20 17:40:10
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+    function Person() { }
+    // 构造函数 和 原型对象
+    // 1. 构造函数 通过 prototype属性来访问到原型对象
+    console.log(Person.prototype);
+    // 2. 原型对象 通过 constructor属性来访问到构造函数
+    console.log(Person.prototype.constructor);//Person
+
+    // 构造函数 和 实例对象的关系
+    // 1. 构造函数通过new创建出来实例对象
+    let xa = new Person()
+    // 2. 实例对象不能去直接访问到构造函数
+
+    // 原型对象 和 实例对象的关系
+    // 1. 实例对象通过__proto__属性访问原型对象上的任意成员
+    // 2. 实例对象通过原型对象的constructor属性可以间接的访问构造函数
+    console.log(xa.__proto__ === Person.prototype);//true
+    console.log(xa.constructor === Person);//true
+
+
+  </script>
+</body>
+
+</html>

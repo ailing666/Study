@@ -1,0 +1,55 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-19 17:08:26
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-20 13:26:47
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+
+
+    function Person() { }
+    console.log(Person.prototype);
+    console.log(Person.constructor);
+    console.log(Person.prototype.constructor === Person);//true
+
+    //应用场景
+    function Star(name) {
+      this.name = name
+      this.bey = function () {
+        console.log('bey~');
+      }
+    }
+    //给原型对象赋值的是一个对象，原型对象就会被覆盖，此时的constructor就不再指向Star了，而是Object
+    Star.prototype = {
+      //需要在内部手动修改constructor指向
+      constructor: Star,
+      age: '18',
+      say: function () {
+        console.log('hello');
+      }
+    }
+
+    let xa = new Star('小艾同学')
+    console.log(xa.constructor);// constructor修改指向前：Object 修改指向后：Star
+
+
+  </script>
+</body>
+
+</html>

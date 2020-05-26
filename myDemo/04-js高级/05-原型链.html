@@ -1,0 +1,61 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-20 17:49:59
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-20 20:37:32
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+
+    //对象有__proto__属性，指向了当前的原型对象，原型对象也是对象，也有__proto__属性，指向了原型对象的原型对象，这样一环套一环的形成了链式结构，就是原型链
+    function Person() { }
+    let p = new Person()
+    console.log(p.__proto__ === Person.prototype);//true
+    console.log(Person.prototype.__proto__ === Object.prototype);//true
+    console.log(Object.prototype.__proto__);//null
+    // p的原型链：p --> Person.prototype --> Object.prototype --> null
+
+    // 内置对象的原型链
+    // 1.数组
+    //[]本质上是 [] = new Array(),空数组也是两个不同的地址值
+    console.log([] == []);//false
+    console.log([] === []);//false
+
+    let arr = []
+    console.log(arr.__proto__ === Array.prototype);//true
+    console.log(Array.prototype.__proto__ === Object.prototype);//true
+    console.log(Object.prototype.__proto__);//null
+    //数组的原型链：arr --> Array.prototype --> Object.prototype --> null
+
+    // 2.Date
+    let date = new Date()
+    console.log(date.__proto__ === Date.prototype);//true
+    console.log(Date.prototype.__proto__ === Object.prototype);//true
+    console.log(Object.prototype.__proto__);//null
+    //Date的原型链： date --> Date.prototype --> Object.prototype --> null
+
+    //3.Math
+    //Math本质上就是一个对象，不能和new一起使用
+    console.log(Math);
+    console.log(Math.__proto__);//Object.prototype
+    console.log(Object.prototype.__proto__);//null
+    //Math的原型链：Math --> Object.prototype --> null
+  </script>
+</body>
+
+</html>

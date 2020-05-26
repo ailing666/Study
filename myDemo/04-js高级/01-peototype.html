@@ -1,0 +1,46 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-17 22:20:31
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-18 21:26:14
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    //1.每个函数都自带prototype属性
+    //2.函数的prototype属性的值是一个对象，该对象就是这个函数的原型
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+    }
+    //将公共的方法提取到构造函数自带的原型对象中
+    Person.prototype.say = function () {
+      console.log('hi~');
+    }
+
+    let xa = new Person('小艾同学', 23)
+    let cp = new Person('cp', 28)
+    console.log(Person.prototype);
+
+    // 实例对象能够访问构造函数原型对象上的任何成员
+    xa.say()
+
+    //同样解决了内存浪费的问题
+    console.log(xa === cp);//false
+    console.log(xa.say === cp.say);//true
+  </script>
+</body>
+
+</html>
