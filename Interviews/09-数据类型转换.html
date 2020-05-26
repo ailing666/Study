@@ -1,0 +1,68 @@
+<!--
+ * @Descripttion: 持续学习
+ * @Author: 小艾同学
+ * @Date: 2020-05-26 18:49:52
+ * @LastEditors: 小艾同学
+ * @LastEditTime: 2020-05-26 19:13:30
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <script>
+
+    console.log(!(!"Number(undefined)"));//true
+    //将一个非空字符串转为Boolean类型结果为true，取反为false，再取反结果为true
+    console.log(isNaN(parseInt(new Date())) + Number([1]) + typeof undefined);
+    /*
+      parseInt中第一个为字母无法转换，结果为NaN,isNaN判断结果为true
+      Number([1])为1
+      typeof undefined为字符串undefined
+      所以true和1做加法运算，将true隐式转为数字1，计算结果为2，在与字符串类型的undefined作拼接，所以结果为2undefined
+    */
+    console.log(Boolean(Number("")) + !isNaN(Number(null)) + Boolean("parseInt([])") + typeof !(null));
+    /*
+      Number("") --> 0     转为布尔 --> false
+      Number(null) -->0     isNaN --> false    取反 true
+      一个非空字符串转为boolean --> true
+      !(null) --> true    typeof --> 字符串boolean
+      结果：0+1+1+boolean --> 2boolean
+      
+    */
+    console.log(parseFloat("1.6px") + parseInt("1.2px") + typeof parseInt(null));//2.6number
+    /*
+      parseFloat("1.6px") --> 1.6
+      parseInt("1.2px") --> 1
+      typeof parseInt(null) --> 字符串number
+    */
+    console.log(isNaN(Number(!!Number(parseInt("0.8")))));
+    /*
+      parseInt("1.8") --> 0
+      转为Number --> 0
+      双取反 --> false
+      转为Number --> 0
+      isNaN --> false
+    */
+    console.log(!typeof parseFloat("0"));
+    /*
+      parseFloat("0") --> 0
+      typeof检测 --> 字符村number
+      取反 --> false
+    */
+    console.log(typeof "paseInt(null)" + 12 + !!Number(NaN));
+    console.log(!typeof (isNaN("")) + parseInt(NaN));
+    console.log(typeof !parseInt(null) + !isNaN(null);
+  </script>
+</body>
+
+</html>
